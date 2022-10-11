@@ -45,16 +45,18 @@ def print_title():
     print(Style.RESET_ALL)
 
     #Prints the "Press any key to continue..." text.  
-    for char in input("Press ENTER to continue..."):
-        sys.stdout.write(Fore.WHITE + char)
-        sys.stdout.flush()
-        time.sleep(0.1)
-    print(Style.RESET_ALL)
-
-    #Plays confirming sound after ENTER is pressed.
-    music.play_click_music()
-    time.sleep(1)
+    input("Press ENTER to continue...")
     
+    #Re-prints the title screen.
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(Fore.RED + title)
+    print(Fore.GREEN + text_under_title)
+    print(Fore.GREEN + Style.DIM + "Please wait..." + Style.RESET_ALL)
+
+    #Plays confirming sound after ENTER is pressed and removed.
+    music.play_click_music()
+    time.sleep(3)
+
     #Clears screen in prep for the game.
     os.system('cls' if os.name == 'nt' else 'clear')
 

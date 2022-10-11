@@ -5,5 +5,4 @@ ts.print_title()
 
 music.play_main_game_music()
 
-print("Press ENTER to exit...")
-input = input("W.I.P >>>")
+input("Game is still in development.  Please check back later.")
