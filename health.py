@@ -1,6 +1,8 @@
+#Import modules.
 import sys
 from colorama import Fore, Style
  
+#Prints the health bar. Takes the following arguments:
 def health_bar_init(it, prefix="", size=60, colour=Fore.WHITE, out=sys.stdout):
         count = len(it)
         def show(j):
@@ -11,7 +13,7 @@ def health_bar_init(it, prefix="", size=60, colour=Fore.WHITE, out=sys.stdout):
         for i, item in enumerate(it):
             yield item
             show(i+1)
-        print("\n", flush=False, file=out)
+        print(flush=False, file=out)
         print(Style.RESET_ALL, flush=False, file=out)
 
 

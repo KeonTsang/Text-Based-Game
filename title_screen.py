@@ -1,3 +1,4 @@
+#Import modules.
 import sys, time, os
 import music as music
 from colorama import Fore, Style
