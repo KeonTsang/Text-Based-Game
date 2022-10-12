@@ -16,7 +16,7 @@ for i in health.health_bar_init(range(100), "Health: ", 40, Fore.GREEN):
     time.sleep(0.01)
 
 #Prints the sanity bar.
-for i in health.health_bar_init(range(100), "Sanity: ", 40, Fore.YELLOW):
+for i in health.health_bar_init(range(50), "Sanity: ", 40, Fore.YELLOW):
     time.sleep(0.01)
 
 #Displays the "Still in development" message. 
