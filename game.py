@@ -21,4 +21,39 @@ for i in health.health_bar_init(range(50), "Sanity: ", 40, Fore.YELLOW):
 
 #Displays the "Still in development" message. 
 print()
-input("Game is still in development!" + Fore.BLUE + " Please check back later! " + Fore.RESET)
+print(
+"""
+               ,
+            ,:' `..;
+            `. ,;;'%
+            +;;'%/%/%
+             /- %,)%
+             `   \ %
+              =  )/ \ 
+              `-'/ / \ 
+                /\/.-.\ 
+               |  (    |
+               |  |   ||
+               |  |   ||
+           _.-----'   ||
+          / \________,'|
+         (((/  |       |
+         //    |       |
+        //     |\      |
+       //      | \     |
+      //       |  \    |
+     //        |   \   |
+    //         |    \  |
+   //          |    |\ |
+  //           |    | \|
+ //            \    \ 
+c'             |\    \ 
+               | \    \ 
+               |  \    \ 
+               |.' \    \ 
+              _\    \.-' \ 
+             (___.-(__.'\/
+"""
+)
+print()
+input(Fore.CYAN + "Nothing to see here! Press enter to exit." + Fore.RESET)

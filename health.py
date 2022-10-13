@@ -2,7 +2,7 @@
 import sys
 from colorama import Fore, Style
  
-#Prints the health bar. Takes the following arguments:
+#Prints the 'INSERT NAME HERE' bar. Takes the following arguments:
 def health_bar_init(it, prefix="", size=60, colour=Fore.WHITE, out=sys.stdout):
         count = len(it)
         def show(j):
