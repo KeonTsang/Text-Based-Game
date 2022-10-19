@@ -35,12 +35,12 @@ def list_of_items(items):
 
 def print_room_items(room):
     if room["items"] != []:
-        print("There is a " + list_of_items(room["items"]) + " here.")
+        print(Fore.RED + "(!) " + Fore.RESET + "There is a " + list_of_items(room["items"]) + " here.")
         print()
 
 def print_inventory_items(items):
     if [item["name"] for item in items] != []:
-        print("You have a " + list_of_items(items) + ".")
+        print(Fore.LIGHTMAGENTA_EX + "(!) " + Fore.RESET + "You have a " + list_of_items(items) + ".")
         print()
     else:
         print("You have nothing in your inventory.")
@@ -62,7 +62,7 @@ def exit_leads_to(exits, direction):
 
 
 def print_exit(direction, leads_to):
-    print("GO " + direction.upper() + " to " + leads_to + "." + Fore.GREEN + "()" + Fore.RESET)
+    print(Fore.GREEN + "(★) " + Fore.RESET + "GO " + direction.upper() + " to " + leads_to + ".")
 
 
 def print_menu(exits, room_items, inv_items):
@@ -74,11 +74,11 @@ def print_menu(exits, room_items, inv_items):
     # Iterate over items in the room
     for item in room_items:
         # Print the item name and description
-        print("TAKE " + item["id"].upper() + " to take " + item["name"] + "." + Fore.GREEN + "()" + Fore.RESET)
+        print(Fore.GREEN + "(★) " + Fore.RESET + "TAKE " + item["id"].upper() + " to take " + item["name"] + ".")
     # Iterate over items in the inventory
     for item in inv_items:
         # Print the item name and description
-        print("DROP " + item["id"].upper() + " to drop " + item["name"] + "." + Fore.RED + "()" + Fore.RESET)
+        print(Fore.RED + "(★) " + Fore.RESET + "DROP " + item["id"].upper() + " to drop " + item["name"] + ".")
     print()
     print("What do you want to do?")
 
@@ -103,7 +103,8 @@ def execute_take(item_id):
         if item["id"] == item_id:
             inventory.append(item)
             current_room["items"].remove(item)
-            print("You took " + item["name"] + ".")
+            print(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + "You took " + item["name"] + ".")
+            input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
             return
     print("You cannot take that.")
 
@@ -115,9 +116,20 @@ def execute_drop(item_id):
         if item["id"] == item_id:
             inventory.remove(item)
             current_room["items"].append(item)
-            print("You drop the " + item["name"] + ".")
+            print(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + "You drop the " + item["name"] + ".")
+            input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
             return
     print("You cannot drop that.")
+
+def execute_look(item_id):
+    global current_room
+    global inventory
+    for item in inventory:
+        if item["id"] == item_id:
+            print(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + item["description"])
+            input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
+            return
+    print("You cannot look at that.")
     
 
 def execute_command(command):
@@ -143,9 +155,14 @@ def execute_command(command):
         else:
             print("Drop what?")
 
+    elif command[0] == "look":
+        if len(command) > 1:
+            execute_look(command[1])
+        else:
+            print("Look at what?")
+
     else:
         print("This makes no sense.")
-
 
 def menu(exits, room_items, inv_items):
     # Display menu
@@ -165,7 +182,7 @@ def move(exits, direction):
     return rooms[exits[direction]]
 
     
-# This is the entry point of our program
+
 def main():
     # Main game loop
     while True:
@@ -175,7 +192,6 @@ def main():
         #Prints the health bar (no animation).
         print(health.health_bar_100)
 
-        
         #Sets discovery to True.
         current_room["discovered"] = True
 
@@ -183,17 +199,17 @@ def main():
         if item_map in inventory:
             print(map.print_map())
 
-
         # Display game status (room description, inventory etc.)
         print_room(current_room)
         print_inventory_items(inventory)
-        
+
         # Show the menu with possible actions and ask the player
         command = menu(current_room["exits"], current_room["items"], inventory)
 
         # Execute the player's command
         execute_command(command)
 
+# Start the game
 if __name__ == "__main__":
     main()
 

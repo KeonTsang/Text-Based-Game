@@ -8,7 +8,7 @@ pygame.init()
 
 #Plays 'main game' music.
 def play_main_game_music():
-    pygame.mixer.music.load("music_assets/main_theme.mp3")
+    pygame.mixer.music.load("music_assets/main_music_theme.mp3")
     pygame.mixer.music.play()
 
 #Plays 'title screen' music.

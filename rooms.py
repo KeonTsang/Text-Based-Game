@@ -25,6 +25,7 @@ MAIN_FLOOR = {
     """
     This is the main floor of the facility. 
     There are a few doors leading off in different directions.
+    The eery silence frightens you.
     """,
 
     "exits": {"east": "Hyperbaric Chamber", "west": "Testing Area"},
