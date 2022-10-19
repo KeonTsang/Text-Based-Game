@@ -13,7 +13,7 @@ def play_main_game_music():
 
 #Plays 'title screen' music.
 def play_title_screen_music():
-    pygame.mixer.music.load("music_assets/title_screen_music.mp3")
+    pygame.mixer.music.load("music_assets/title_music.mp3")
     pygame.mixer.music.play()
 
 #Plays the 'click' sound.

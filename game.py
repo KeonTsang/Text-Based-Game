@@ -4,6 +4,8 @@ from colorama import Fore
 import title_screen as ts
 import music as music
 import health as health
+import map as map
+import os as os
 
 #Prints the title screen and plays the title screen music.
 ts.print_title()
@@ -11,49 +13,18 @@ ts.print_title()
 #Plays the main game music.
 music.play_main_game_music()
 
+#Prints the health bar. Use 'health.health_bar_x' to change the health bar.
+for i in health.health_bar_init(range(100), "Health: ", 50, Fore.GREEN):
+    time.sleep(0.01)
+
+#Flushes screen in preperation for the map & health bar.
+os.system('cls' if os.name == 'nt' else 'clear')
+
 #Prints the health bar.
-for i in health.health_bar_init(range(100), "Health: ", 40, Fore.GREEN):
-    time.sleep(0.01)
+print(health.health_bar_100)
 
-#Prints the sanity bar.
-for i in health.health_bar_init(range(50), "Sanity: ", 40, Fore.YELLOW):
-    time.sleep(0.01)
+#Prints the map.
+print(map.map)
 
-#Displays the "Still in development" message. 
-print()
-print(
-"""
-               ,
-            ,:' `..;
-            `. ,;;'%
-            +;;'%/%/%
-             /- %,)%
-             `   \ %
-              =  )/ \ 
-              `-'/ / \ 
-                /\/.-.\ 
-               |  (    |
-               |  |   ||
-               |  |   ||
-           _.-----'   ||
-          / \________,'|
-         (((/  |       |
-         //    |       |
-        //     |\      |
-       //      | \     |
-      //       |  \    |
-     //        |   \   |
-    //         |    \  |
-   //          |    |\ |
-  //           |    | \|
- //            \    \ 
-c'             |\    \ 
-               | \    \ 
-               |  \    \ 
-               |.' \    \ 
-              _\    \.-' \ 
-             (___.-(__.'\/
-"""
-)
-print()
-input(Fore.CYAN + "Nothing to see here! Press enter to exit." + Fore.RESET)
+
+
