@@ -1,6 +1,9 @@
 #Import modules / files.
 import time
 from colorama import Fore
+
+import random
+import player
 import title_screen as ts
 import music as music
 import health as health
@@ -161,6 +164,9 @@ def execute_command(command):
         else:
             print("Look at what?")
 
+    elif command[0] == "damage":
+        player.player_health -= random.randint(0, 10)
+
     else:
         print(f"'{command[0]}' | Makes no sense.")
         input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
@@ -191,7 +197,7 @@ def main():
         os.system('cls' if os.name == 'nt' else 'clear')
         
         #Prints the health bar (no animation).
-        print(health.health_bar_100)
+        print(health.genHealthBar(player.player_health))
 
         #Sets discovery to True.
         current_room["discovered"] = True
