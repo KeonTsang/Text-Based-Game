@@ -168,7 +168,7 @@ def execute_command(command):
         player.player_health -= random.randint(0, 10)
 
     else:
-        print(f"'{command[0]}' | Makes no sense.")
+        print(f"'{command[0]}' -> Makes no sense.")
         input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
 
 def menu(exits, room_items, inv_items):
