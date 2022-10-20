@@ -167,6 +167,15 @@ def execute_command(command):
     elif command[0] == "damage":
         player.player_health -= random.randint(0, 10)
 
+    elif command[0] == "help":
+        print()
+        print("Commands:")
+        print(Fore.LIGHTBLUE_EX + "(!) " + Fore.RESET + "GO [direction] - Moves you in the direction you choose.")
+        print(Fore.LIGHTBLUE_EX+ "(!) " + Fore.RESET + "TAKE [item] - Takes the item you choose.")
+        print(Fore.LIGHTBLUE_EX + "(!) " + Fore.RESET + "DROP [item] - Drops the item you choose.")
+        print(Fore.LIGHTBLUE_EX + "(!) " + Fore.RESET + "LOOK [item] - Looks at the item you choose.")
+        input(Fore.LIGHTBLUE_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
+        
     else:
         print(f"'{command[0]}' -> Makes no sense.")
         input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
