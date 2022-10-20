@@ -2,7 +2,7 @@ import string
 
 allow_words = ["damage", "help", "go", "north", "south", "west", "east", "take", "drop", "map", "keycard", "look"]
 
-def filter_words(words, skip_words):
+def filter_words(words):
     """This function takes a list of words and returns a copy of the list from
     which all words provided in the list skip_words have been removed.
     """
@@ -34,5 +34,5 @@ def normalise_input(user_input):
     # Split string into a list of words (words are separated by spaces)
     words = no_punct.split()
     # Remove "unimportant" words
-    important_words = filter_words(words, skip_words)
+    important_words = filter_words(words)
     return important_words
