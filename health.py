@@ -16,6 +16,7 @@ def health_bar_init(it, prefix="", size=60, colour=Fore.WHITE, out=sys.stdout):
         print(flush=False, file=out)
         print(Style.RESET_ALL, flush=False, file=out)
 
+
 health_bar_100 = Fore.GREEN + "Health: [##################################################] 100/100" + Fore.RESET
 health_bar_80 = "Health: [####################################              ] 80/100"
 health_bar_60 = "Health: [############################                      ] 60/100"

@@ -162,7 +162,8 @@ def execute_command(command):
             print("Look at what?")
 
     else:
-        print("This makes no sense.")
+        print(f"'{command[0]}' | Makes no sense.")
+        input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
 
 def menu(exits, room_items, inv_items):
     # Display menu
