@@ -28,7 +28,7 @@ for i in health.health_bar_init(range(100), "Health: ", 50, Fore.GREEN):
 os.system('cls' if os.name == 'nt' else 'clear')
 
 #Prints the health bar (no animation).
-print(health.health_bar_100)
+print(health.genHealthBar(100))
 
 #####################################################################################################################
 
