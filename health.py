@@ -16,7 +16,12 @@ def health_bar_init(it, prefix="", size=60, colour=Fore.WHITE, out=sys.stdout):
         print(flush=False, file=out)
         print(Style.RESET_ALL, flush=False, file=out)
 
-
+def genHealthBar(health):
+    healthBar = (Fore.GREEN if health > 40 else Fore.YELLOW if health > 20 else Fore.RED) + "Health: ["
+    for i in range(0, 51):
+        healthBar += " " if i == 0 and health == 0 else "#" if i <= math.floor(health / 2) else " "
+    healthBar += f"] {health}/100" + Fore.RESET
+    return healthBar
 
 health_bar_100 = Fore.GREEN + "Health: [##################################################] 100/100" + Fore.RESET
 health_bar_80 = "Health: [####################################              ] 80/100"
