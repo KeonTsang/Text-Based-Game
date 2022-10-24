@@ -9,16 +9,22 @@ class Stethoscope(Monster):
 
     def phase1(self):
         self.command_reader()
+        if not self.isAlive():
+            return False
         self.attack()
         return False if self.getPhase() > 1 else True
 
     def phase2(self):
         self.command_reader()
+        if not self.isAlive():
+            return False
         self.attack()
         return False if self.getPhase() > 2 else True
 
     def phase3(self):
         self.command_reader()
+        if not self.isAlive():
+            return False
         self.attack()
         return False if self.isSpared() else True
 
@@ -49,9 +55,9 @@ class Stethoscope(Monster):
     def execute_attack(self):
         weapon = player.current_weapon
         damage = weapon.attack()
-        self.damage(damage)
         print(f"\nYou dealt {damage} to {self.name} using your {weapon.name}!")
         print(f"{self.name}: 'Owww!!! That hurts!'\n")
+        self.damage(damage)
         self.setPhase(1)
 
     def spare(self):

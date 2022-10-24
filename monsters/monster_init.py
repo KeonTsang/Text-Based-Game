@@ -28,6 +28,3 @@ def battleMonster(monster):
             phase3 = monster.phase3()
             if player.player_health < 1:
                 print("Game Over\nYou died!")
-
-
-battleMonster(stephy)
