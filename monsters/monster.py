@@ -58,7 +58,7 @@ class Monster:
     def display_health(self):
         health = self.health
         health_bar = (Fore.GREEN if health > (self.max_hp * 0.4) else Fore.YELLOW if health > (
-                    self.max_hp * 0.2) else Fore.RED) + "Health: ["
+                    self.max_hp * 0.2) else Fore.RED) + f"{self.name}'s Health: ["
         for i in range(0, (math.floor(self.max_hp / 2) + 1)):
             health_bar += " " if i == 0 and health == 0 else "#" if i <= math.floor(health / 2) else " "
         health_bar += f"] {health}/{self.max_hp}" + Fore.RESET
