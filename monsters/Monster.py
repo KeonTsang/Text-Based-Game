@@ -35,3 +35,29 @@ class Monster:
             healthBar += " " if i == 0 and health == 0 else "#" if i <= math.floor(health / 2) else " "
         healthBar += f"] {health}/100" + Fore.RESET
         return healthBar
+
+    # Command parser
+    def execute_command(command):
+        if 0 == len(command):
+            return
+        if command[0] == "go":
+            if len(command) > 1:
+                execute_go(command[1])
+            else:
+                print("Go where?")
+        else:
+            print(f"'{command[0]}' -> Makes no sense.")
+            input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
+
+    # Battle Phases
+    @abstractmethod
+    def phase1(self):
+        pass
+
+    @abstractmethod
+    def phase2(self):
+        pass
+
+    @abstractmethod
+    def phase3(self):
+        pass
