@@ -12,13 +12,10 @@ class Monster:
         self.max_hp = max_hp
         self.max_damage = max_damage
         self.min_damage = min_damage
+        self.isSpare = False
 
     def __init__(self, name, max_hp, max_damage):
-        self.name = name
-        self.health = max_hp
-        self.max_hp = max_hp
-        self.max_damage = max_damage
-        self.min_damage = 0
+        self.__init__(self, name, max_hp, max_damage, max_damage)
 
     # Returns damage value dealt by entity
     def attack(self):
@@ -27,6 +24,10 @@ class Monster:
     # Damages this entity by whatever amount
     def damage(self, damage):
         self.health -= damage
+
+    # Returns if the monster is still alive
+    def isAlive(self):
+        return self.health > 0
 
     # Displays a health bar which can vary in size depending on monster's max Hp
     def display_health(self, health):
@@ -37,17 +38,36 @@ class Monster:
         return healthBar
 
     # Command parser
-    def execute_command(command):
+    def execute_command(self, command):
         if 0 == len(command):
             return
-        if command[0] == "go":
-            if len(command) > 1:
-                execute_go(command[1])
-            else:
-                print("Go where?")
+        if command[0] == "spare":
+            self.execute_spare()
+        elif command[0] == "talk":
+                self.execute_talk()
+        elif command[0] == "attack":
+                self.execute_attack()
+        elif command[0] == "action":
+                self.execute_action()
         else:
             print(f"'{command[0]}' -> Makes no sense.")
             input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
+
+    @abstractmethod
+    def execute_spare(self):
+        pass
+
+    @abstractmethod
+    def execute_talk(self):
+        pass
+
+    @abstractmethod
+    def execute_attack(self):
+        pass
+
+    @abstractmethod
+    def execute_action(self):
+        pass
 
     # Battle Phases
     @abstractmethod
