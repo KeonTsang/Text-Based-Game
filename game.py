@@ -13,6 +13,7 @@ import rooms as rooms
 import items as items
 from game_parser import *
 from player import *
+from items import item_init
 
 #Prints the title screen and plays the title screen music.
 ts.print_title()
@@ -33,7 +34,7 @@ print(health.genHealthBar(100))
 #####################################################################################################################
 
 def list_of_items(items):
-    return ", ".join([item["name"] for item in items])
+    return ", ".join([item.name for item in items])
 
 
 def print_room_items(room):
@@ -42,7 +43,7 @@ def print_room_items(room):
         print()
 
 def print_inventory_items(items):
-    if [item["name"] for item in items] != []:
+    if [item.name for item in items] != []:
         print(Fore.LIGHTMAGENTA_EX + "(!) " + Fore.RESET + "You have a " + list_of_items(items) + ".")
         print()
     else:
@@ -77,11 +78,11 @@ def print_menu(exits, room_items, inv_items):
     # Iterate over items in the room
     for item in room_items:
         # Print the item name and description
-        print(Fore.GREEN + "(★) " + Fore.RESET + "TAKE " + item["id"].upper() + " to take " + item["name"] + ".")
+        print(Fore.GREEN + "(★) " + Fore.RESET + "TAKE " + item.name.upper() + " to take " + item.name + ".")
     # Iterate over items in the inventory
     for item in inv_items:
         # Print the item name and description
-        print(Fore.RED + "(★) " + Fore.RESET + "DROP " + item["id"].upper() + " to drop " + item["name"] + ".")
+        print(Fore.RED + "(★) " + Fore.RESET + "DROP " + item.name.upper() + " to drop " + item.name + ".")
     print()
     print("What do you want to do?")
 
@@ -103,10 +104,10 @@ def execute_take(item_id):
     global current_room
     global inventory
     for item in current_room["items"]:
-        if item["id"] == item_id:
+        if item.name == item_id:
             inventory.append(item)
             current_room["items"].remove(item)
-            print(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + "You took " + item["name"] + ".")
+            print(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + "You took " + item.name + ".")
             input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
             return
     print("You cannot take that.")
@@ -116,10 +117,10 @@ def execute_drop(item_id):
     global current_room
     global inventory
     for item in inventory:
-        if item["id"] == item_id:
+        if item.name == item_id:
             inventory.remove(item)
             current_room["items"].append(item)
-            print(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + "You drop the " + item["name"] + ".")
+            print(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + "You drop the " + item.name + ".")
             input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
             return
     print("You cannot drop that.")
@@ -128,7 +129,7 @@ def execute_look(item_id):
     global current_room
     global inventory
     for item in inventory:
-        if item["id"] == item_id:
+        if item.name == item_id:
             print(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + item["description"])
             input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
             return
@@ -212,7 +213,7 @@ def main():
         current_room["discovered"] = True
 
         #Checks if player has map in inventory. If so, print map.
-        if item_map in inventory:
+        if item_init.map in inventory:
             print(map.print_map())
 
         # Display game status (room description, inventory etc.)

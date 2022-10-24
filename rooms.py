@@ -1,5 +1,6 @@
 from items import *
 from map import *
+from items import item_init
 
 HYPERBARIC_CHAMBER = {
     "name": "Hyperbaric Chamber",
@@ -13,7 +14,7 @@ HYPERBARIC_CHAMBER = {
 
     "exits": {"west": "Main Floor"},
 
-    "items": [item_map],
+    "items": [item_init.map],
 
     "discovered" : False
 }
@@ -30,7 +31,7 @@ MAIN_FLOOR = {
 
     "exits": {"east": "Hyperbaric Chamber", "west": "Testing Area"},
 
-    "items": [item_keycard],
+    "items": [item_init.keycard],
 
     "discovered" : False
 }
