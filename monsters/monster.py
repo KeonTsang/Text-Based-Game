@@ -25,16 +25,16 @@ class Monster:
         if not self.isSpared():
             damage = 0 if random.random() < self.miss_chance else random.randint(self.min_damage, self.max_damage)
             if damage == 0:
-                print(f"\n{self.name} tried to attack you, but missed!\n")
+                print(f"\n{self.name} tried to attack you, but missed!")
             else:
-                print(f"\n{self.name} attacked you for {damage} hit points!\n")
+                print(f"\n{self.name} attacked you for {damage} hit points!")
                 player.player_health -= damage
 
     # Damages this entity by whatever amount
     def damage(self, damage):
         self.health -= damage
         if self.health < 1:
-            print("You killed Stephy!")
+            print(f"\nYou killed {self.name}")
             player.karma -= 1
 
     # Returns if the monster is still alive
@@ -66,7 +66,10 @@ class Monster:
 
     # Takes in inputs from user
     def command_reader(self):
-        command = input(f"ATTACK {self.name}\nTALK to {self.name}\nuse an ACTION on {self.name}\nSPARE {self.name}\n\n")
+        command = input(Fore.RED + "\n(!)" + Fore.RESET + f" ATTACK {self.name}\n" +
+                        Fore.CYAN + "(?)" + Fore.RESET + f" TALK to {self.name}\n" +
+                        Fore.YELLOW + "(*)" + Fore.RESET + f" use an ACTION on {self.name}\n" +
+                        Fore.GREEN + "(~)" + Fore.RESET + f" SPARE {self.name}\n\n")
         self.execute_command(game_parser.normalise_input(command))
 
     # Command parser

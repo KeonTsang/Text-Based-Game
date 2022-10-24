@@ -15,22 +15,15 @@ def battleMonster(monster):
         time.sleep(0.01)
     os.system('cls' if os.name == 'nt' else 'clear')
 
-    #for i in range(0, player.player_health, 10):
-    #    os.system('cls' if os.name == 'nt' else 'clear')
-    #    print(health.genHealthBar(i))
-    #    time.sleep(0.01)
-    #os.system('cls' if os.name == 'nt' else 'clear')
-
-    phase1 = True
-    phase2 = True
-    phase3 = True
     while not monster.isSpared() and monster.isAlive():
 
         if monster.getPhase() == 1:
             player.displayHealth()
-            print(monster.image)
+            print("\n" + monster.image)
             monster.display_health()
             monster.phase1()
+            input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
+            os.system('cls' if os.name == 'nt' else 'clear')
         elif monster.getPhase() == 2:
             player.displayHealth()
             monster.display_health()

@@ -69,7 +69,7 @@ class Stethoscope(Monster):
         weapon = player.current_weapon
         damage = weapon.attack()
         print(f"\nYou dealt {damage} to {self.name} using your {weapon.name}!")
-        print(f"{self.name}: 'Owww!!! That hurts!'\n")
+        print(f"{self.name}: 'Owww!!! That hurts!'")
         self.damage(damage)
         self.setPhase(1)
 
