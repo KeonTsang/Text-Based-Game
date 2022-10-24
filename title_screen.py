@@ -17,15 +17,15 @@ title = """
   """
 
 text_under_title = """
-Confused, you awake from a slumber.
+Confused, you awake from a slumber, bruised and battered.
 
 Your name is unknown to you, but you know that you are someone of importance.
 
-You find yourself in a room, with no memory of how you got there.
+You find yourself in a room, with an odd sense of familiarity.
 
-The gentle ring of a PA chimes:
+The gentle ring of a PA system chimes:
 
-"Test subject #1, please report to the testing area."
+"Test subject #1 - Please make your way to the testing area."
 
 You have no choice but to follow the instructions.
 """
