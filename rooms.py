@@ -24,8 +24,8 @@ MAIN_FLOOR = {
 
     "description":
     """
-    This is the main floor of the facility. 
-    There are a few doors leading off in different directions.
+    This is the main floor of the facility. It is in pristine condition.
+    There are a few doors leading off in different directions. There is no sign of human life.
     The eery silence frightens you.
     """,
 
@@ -41,7 +41,8 @@ TESTING_AREA = {
 
     "description":
     """
-    Testing Area
+    This seems to be the place where experiments take place.
+    The nature of these experiements is unknown to you.
     """,
 
     "exits": {"east": "Main Floor"},
