@@ -4,29 +4,42 @@ from monsters.monster import Monster
 
 class Stethoscope(Monster):
 
+    image = """.................
+..(   )...(   )..
+...| |.....| |...
+...| |.....| |...
+...\\ \...../ /...
+....\\ \.../ /....
+.....\\ \_/ /.....
+......\   /......
+...__..| |.......
+..(  )..\ \......
+...||....| |.....
+....\\\...| |.....
+.....\\\_/ /......
+......\__/.......
+................."""
+
     def __init__(self):
         super(Stethoscope, self).__init__("Stephy", 20, 7, 5, 0.05)
 
     def phase1(self):
         self.command_reader()
         if not self.isAlive():
-            return False
+            return
         self.attack()
-        return False if self.getPhase() > 1 else True
 
     def phase2(self):
         self.command_reader()
         if not self.isAlive():
-            return False
+            return
         self.attack()
-        return False if self.getPhase() > 2 else True
 
     def phase3(self):
         self.command_reader()
         if not self.isAlive():
-            return False
+            return
         self.attack()
-        return False if self.isSpared() else True
 
     def execute_spare(self):
         if self.getPhase() == 3:

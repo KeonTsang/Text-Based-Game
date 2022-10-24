@@ -4,7 +4,7 @@ from rooms import rooms
 from items import item_init
 
 inventory = []
-player_health = 100
+player_health = 54
 karma = 0
 current_weapon = item_init.fist
 

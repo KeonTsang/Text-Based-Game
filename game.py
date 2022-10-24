@@ -22,14 +22,11 @@ ts.print_title()
 music.play_main_game_music()
 
 #Prints the health bar. Use 'health.health_bar_x' to change the health bar.
-for i in health.health_bar_init(range(100), "Health: ", 50, Fore.GREEN):
+for i in health.health_bar_init(range(player.player_health), "Health: ", 50, Fore.GREEN):
     time.sleep(0.01)
 
 #Flushes screen in preperation for the health bar.
 os.system('cls' if os.name == 'nt' else 'clear')
-
-#Prints the health bar (no animation).
-print(health.genHealthBar(100))
 
 #####################################################################################################################
 
