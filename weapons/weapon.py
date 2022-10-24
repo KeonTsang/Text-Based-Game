@@ -12,10 +12,9 @@ class Weapon:
 
     # Returns damage dealt by weapon
     def attack(self):
+        damage = random.randint(self.min_damage, self.max_damage)
         if random.random() < self.crit_chance:
-            damage = random.randint(self.min_damage, self.max_damage) * 2
-        else:
-            damage = random.randint(self.min_damage, self.max_damage) * 2
+            damage * 2
         return damage
 
     # Prints weapon stats
