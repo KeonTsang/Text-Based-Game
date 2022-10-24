@@ -1,25 +1,36 @@
 from abc import abstractmethod, ABCMeta
 import random
 import math
+import game_parser
 from colorama import Fore
+
+import player
+
 
 class Monster:
     __metaclass__ = ABCMeta
 
-    def __init__(self, name, max_hp, max_damage, min_damage):
+    def __init__(self, name, max_hp, max_damage, min_damage, miss_chance):
         self.name = name
         self.health = max_hp
         self.max_hp = max_hp
         self.max_damage = max_damage
         self.min_damage = min_damage
+        self.miss_chance = miss_chance
+        self.phase = 1
         self.isSpare = False
 
-    def __init__(self, name, max_hp, max_damage):
-        self.__init__(self, name, max_hp, max_damage, max_damage)
+    def __init__(self, name, max_hp, max_damage, miss_chance):
+        self.__init__(self, name, max_hp, max_damage, max_damage, miss_chance)
 
     # Returns damage value dealt by entity
     def attack(self):
-        return random.randint(self.min_damage, self.max_damage)
+        damage = 0 if random.random < self.miss_chance else random.randint(self.min_damage, self.max_damage)
+        if damage == 0:
+            print(f"{self.name} tried to attack you, but missed!")
+        else:
+            print(f"{self.name} attacked you for {damage} hit points!")
+            player.player_health -= damage
 
     # Damages this entity by whatever amount
     def damage(self, damage):
@@ -29,6 +40,16 @@ class Monster:
     def isAlive(self):
         return self.health > 0
 
+    # Sets the current battle phase
+    def setPhase(self, phase):
+        self.phase = phase
+
+    def getPhase(self):
+        return self.phase
+
+    def setSpare(self, sparede):
+        self.isSpare = True
+
     # Displays a health bar which can vary in size depending on monster's max Hp
     def display_health(self, health):
         healthBar = (Fore.GREEN if health > 40 else Fore.YELLOW if health > 20 else Fore.RED) + "Health: ["
@@ -36,6 +57,11 @@ class Monster:
             healthBar += " " if i == 0 and health == 0 else "#" if i <= math.floor(health / 2) else " "
         healthBar += f"] {health}/100" + Fore.RESET
         return healthBar
+
+    # Takes in inputs from user
+    def command_reader(self):
+        command = input(f"ATTACK {self.name}\nTALK to {self.name}\nuse an Action on {self.name}\nSPARE {self.name}")
+        self.execute_command(game_parser.normalise_input(command))
 
     # Command parser
     def execute_command(self, command):
@@ -80,4 +106,8 @@ class Monster:
 
     @abstractmethod
     def phase3(self):
+        pass
+
+    @abstractmethod
+    def spare(self):
         pass

@@ -1,4 +1,4 @@
-from weapons import Weapon
+from Weapon import Weapon
 
 fistDescription = """Your bare fists.
 Fists have a higher chance of dealing a critical blow."""

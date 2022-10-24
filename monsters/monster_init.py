@@ -1,5 +1,5 @@
 import player
-from monsters import Stethoscope
+from monsters.Stethoscope import Monster
 
 stephy = Stethoscope()
 
@@ -20,5 +20,10 @@ def battleMonster(monster):
             phase3 =monster.phase3()
             if player.player_health < 1:
                 print("Game Over\nYouDied!")
+    if monster.isAlive():
+        print(f"You spared {monster.name}!")
+    else:
+        print(f"You killed {monster.name}!")
+
 
 battleMonster(stephy)
