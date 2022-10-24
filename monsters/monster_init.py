@@ -1,11 +1,17 @@
 import player
 import health
+import os
 from monsters.stethoscope import Stethoscope
 
 stephy = Stethoscope()
 
 
 def battleMonster(monster):
+
+    for i in range(0, player.player_health):
+        os.system('cls' if os.name == 'nt' else 'clear')
+
+
     phase1 = True
     phase2 = True
     phase3 = True
