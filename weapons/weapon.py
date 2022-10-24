@@ -1,4 +1,5 @@
-import math
+import random
+
 
 class Weapon:
 
@@ -11,10 +12,10 @@ class Weapon:
 
     # Returns damage dealt by weapon
     def attack(self):
-        if math.random < self.crit_chance:
-            damage = math.randInt(self.min_damage, self.max_damage) * 2
+        if random.random() < self.crit_chance:
+            damage = random.randint(self.min_damage, self.max_damage) * 2
         else:
-            damage = math.randInt(self.min_damage, self.max_damage) * 2
+            damage = random.randint(self.min_damage, self.max_damage) * 2
         return damage
 
     # Prints weapon stats

@@ -20,21 +20,21 @@ class Monster:
         self.phase = 1
         self.isSpare = False
 
-    def __init__(self, name, max_hp, max_damage, miss_chance):
-        self.__init__(self, name, max_hp, max_damage, max_damage, miss_chance)
-
     # Returns damage value dealt by entity
     def attack(self):
-        damage = 0 if random.random < self.miss_chance else random.randint(self.min_damage, self.max_damage)
-        if damage == 0:
-            print(f"{self.name} tried to attack you, but missed!")
-        else:
-            print(f"{self.name} attacked you for {damage} hit points!")
-            player.player_health -= damage
+        if not self.isSpared():
+            damage = 0 if random.random() < self.miss_chance else random.randint(self.min_damage, self.max_damage)
+            if damage == 0:
+                print(f"\n{self.name} tried to attack you, but missed!\n")
+            else:
+                print(f"\n{self.name} attacked you for {damage} hit points!\n")
+                player.player_health -= damage
 
     # Damages this entity by whatever amount
     def damage(self, damage):
         self.health -= damage
+        if self.health < 1:
+            print("You killed Stephy!")
 
     # Returns if the monster is still alive
     def isAlive(self):
@@ -47,20 +47,25 @@ class Monster:
     def getPhase(self):
         return self.phase
 
-    def setSpare(self, sparede):
+    def setSpared(self):
         self.isSpare = True
 
+    def isSpared(self):
+        return self.isSpare
+
     # Displays a health bar which can vary in size depending on monster's max Hp
-    def display_health(self, health):
-        healthBar = (Fore.GREEN if health > 40 else Fore.YELLOW if health > 20 else Fore.RED) + "Health: ["
-        for i in range(0, (math.floor(self.health) + 1)):
-            healthBar += " " if i == 0 and health == 0 else "#" if i <= math.floor(health / 2) else " "
-        healthBar += f"] {health}/100" + Fore.RESET
-        return healthBar
+    def display_health(self):
+        health = self.health
+        health_bar = (Fore.GREEN if health > (self.max_hp * 0.4) else Fore.YELLOW if health > (
+                    self.max_hp * 0.2) else Fore.RED) + "Health: ["
+        for i in range(0, (math.floor(self.max_hp / 2) + 1)):
+            health_bar += " " if i == 0 and health == 0 else "#" if i <= math.floor(health / 2) else " "
+        health_bar += f"] {health}/{self.max_hp}" + Fore.RESET
+        print(health_bar)
 
     # Takes in inputs from user
     def command_reader(self):
-        command = input(f"ATTACK {self.name}\nTALK to {self.name}\nuse an Action on {self.name}\nSPARE {self.name}")
+        command = input(f"ATTACK {self.name}\nTALK to {self.name}\nuse an ACTION on {self.name}\nSPARE {self.name}\n\n")
         self.execute_command(game_parser.normalise_input(command))
 
     # Command parser
@@ -70,11 +75,11 @@ class Monster:
         if command[0] == "spare":
             self.execute_spare()
         elif command[0] == "talk":
-                self.execute_talk()
+            self.execute_talk()
         elif command[0] == "attack":
-                self.execute_attack()
+            self.execute_attack()
         elif command[0] == "action":
-                self.execute_action()
+            self.execute_action()
         else:
             print(f"'{command[0]}' -> Makes no sense.")
             input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
