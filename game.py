@@ -130,7 +130,7 @@ def execute_look(item_id):
     global inventory
     for item in inventory:
         if item.name == item_id:
-            print(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + item["description"])
+            print(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + item.get_description())
             input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
             return
     print("You cannot look at that.")
