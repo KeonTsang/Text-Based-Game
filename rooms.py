@@ -29,7 +29,7 @@ MAIN_FLOOR = {
     The eery silence frightens you.
     """,
 
-    "exits": {"east": "Hyperbaric Chamber", "west": "Testing Area"},
+    "exits": {"east": "Hyperbaric Chamber", "west": "Testing Area", "north": "Reception Area"},
 
     "items": [item_init.keycard],
 
@@ -51,8 +51,29 @@ TESTING_AREA = {
 
     "discovered" : False
 }
+
+RECEPTION_AREA = {
+    "name": "Reception Area",
+
+    "description":
+    """
+    This is the reception area. There is a desk with a computer on it.
+    There is a sign on the desk that reads: "Welcome to the facility. Please sign in."
+    """,
+
+    "exits": {"south": "Main Floor"},
+
+    "items": [],
+
+    "discovered" : False
+}
+
+
+
 rooms = {
     "Hyperbaric Chamber": HYPERBARIC_CHAMBER,
     "Main Floor": MAIN_FLOOR,
-    "Testing Area": TESTING_AREA
+    "Testing Area": TESTING_AREA,
+    "Reception Area": RECEPTION_AREA
 }
+

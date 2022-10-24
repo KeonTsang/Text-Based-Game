@@ -22,6 +22,11 @@ def print_map():
     else:
         ROOM_4 = '?'
 
+    if rooms.RECEPTION_AREA["discovered"] == True:
+        ROOM_3 = 'R'
+    else:
+        ROOM_3 = '?'
+
 
     map =(f"""
     ==================================================
