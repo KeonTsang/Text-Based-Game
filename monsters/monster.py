@@ -35,6 +35,7 @@ class Monster:
         self.health -= damage
         if self.health < 1:
             print("You killed Stephy!")
+            player.karma -= 1
 
     # Returns if the monster is still alive
     def isAlive(self):

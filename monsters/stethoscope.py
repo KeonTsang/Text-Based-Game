@@ -58,3 +58,4 @@ class Stethoscope(Monster):
         print(f"\nYou spared {self.name}")
         print(f"{self.name}: That was fun! We should do this again sometime! Bye now!")
         self.setSpared()
+        player.karma += 1
