@@ -36,12 +36,13 @@ class Monster:
 
     # Damages this entity by whatever amount
     def damage(self, damage):
+        global current_room
         self.health -= damage
         if self.health < 1:
             print(f"\nYou killed {self.name}")
             player.karma -= 1
-            player.current_room["items"].append(self.item)
-            player.current_room["monsters"].remove(self)
+            current_room["items"].append(self.item)
+            current_room["monsters"].remove(self)
 
     # Returns if the monster is still alive
     def isAlive(self):
