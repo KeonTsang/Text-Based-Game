@@ -3,8 +3,7 @@ from items.item import Item
 
 # Weapons
 
-fist = Weapon("Fist", 5, 4, 0.05, """Your bare fists.
-Fists have a higher chance of dealing a critical blow.""")
+fist = Weapon("Fist", 5, 4, 0.05, """Your bare fists.\nFists have a higher chance of dealing a critical blow.""")
 bunsen = Weapon("Bunsen burner", 12,7,0.05,"A bunsen burner that can shoot fire, capable of dealing considerable damage") 
 # Items
 
