@@ -2,11 +2,11 @@ import player
 from monsters.monster import Monster
 from colorama import Fore
 import random
-
+from items import item_init
 class TestTubeRack(Monster):
 
     def __init__(self):
-        super(TestTubeRack, self).__init__("Sgt Ripper", 30, 12, 6, 0.15, Fore.LIGHTRED_EX)
+        super(TestTubeRack, self).__init__("Sgt Ripper", 40, 12, 6, 0.10, Fore.LIGHTRED_EX, item_init.testtube)
 
     # Overidden from super
     def attack(self):

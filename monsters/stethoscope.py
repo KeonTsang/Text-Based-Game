@@ -1,18 +1,13 @@
 import player
 from monsters.monster import Monster
 from colorama import Fore
+from items import item_init
 
 
 class Stethoscope(Monster):
 
     def __init__(self):
-        super(Stethoscope, self).__init__("Stephy", 20, 7, 5, 0.05, Fore.LIGHTMAGENTA_EX)
-
-    def execute_spare(self):
-        if self.getPhase() == 3:
-            self.spare()
-        else:
-            print(f"You cannot spare {self.name} yet!")
+        super(Stethoscope, self).__init__("Stephy", 15, 5, 1, 0.05, Fore.LIGHTMAGENTA_EX, item_init.stethoscope)
 
     def execute_talk(self):
         if self.getPhase() == 1:

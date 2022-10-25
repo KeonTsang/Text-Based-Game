@@ -12,7 +12,7 @@ class Monster:
 
     description = ""
 
-    def __init__(self, name, max_hp, max_damage, min_damage, miss_chance, colour):
+    def __init__(self, name, max_hp, max_damage, min_damage, miss_chance, colour, item):
         self.name = name
         self.health = max_hp
         self.max_hp = max_hp
@@ -22,6 +22,7 @@ class Monster:
         self.phase = 1
         self.isSpare = False
         self.colour = colour
+        self.item = item
 
     # Returns damage value dealt by entity
     def attack(self):
@@ -35,10 +36,13 @@ class Monster:
 
     # Damages this entity by whatever amount
     def damage(self, damage):
+        global current_room
         self.health -= damage
         if self.health < 1:
             print(f"\nYou killed {self.name}")
             player.karma -= 1
+            current_room["items"].append(self.item)
+            current_room["monsters"].remove(self)
 
     # Returns if the monster is still alive
     def isAlive(self):
@@ -121,9 +125,11 @@ class Monster:
             return
         self.attack()
 
-    @abstractmethod
     def execute_spare(self):
-        pass
+        if self.getPhase() == 3:
+            self.spare()
+        else:
+            print(f"You cannot spare {self.name} yet!")
 
     @abstractmethod
     def execute_talk(self):

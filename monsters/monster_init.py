@@ -8,11 +8,14 @@ import os
 from monsters.stethoscope import Stethoscope
 from monsters.testtuberack import TestTubeRack
 from monsters.centrifuge import Centrifuge
+from monsters.bunsenburner import BunsenBurner
+from monsters.nuclearraygun import NuclearRayGun
 
 stephy = Stethoscope()
 sgtripper = TestTubeRack()
 c3nti = Centrifuge()
-
+mrburns = BunsenBurner()
+raymond = NuclearRayGun()
 
 def end_phase():
     input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
