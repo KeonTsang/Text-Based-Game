@@ -6,7 +6,7 @@ from colorama import Fore
 class Stethoscope(Monster):
 
     def __init__(self):
-        super(Stethoscope, self).__init__("Stephy", 20, 7, 5, 0.05, Fore.LIGHTMAGENTA_EX)
+        super(Stethoscope, self).__init__("Stephy", 15, 5, 1, 0.05, Fore.LIGHTMAGENTA_EX)
 
     def execute_spare(self):
         if self.getPhase() == 3:

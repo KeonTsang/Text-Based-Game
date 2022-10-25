@@ -6,7 +6,7 @@ from colorama import Fore
 class BunsenBurner(Monster):
 
     def __init__(self):
-        super(BunsenBurner, self).__init__("Mr Burns", 10, 7, 1, 0.25, Fore.RED)
+        super(BunsenBurner, self).__init__("Mr Burns", 30, 12, 1, 0.25, Fore.RED)
 
     def execute_spare(self):
         if self.getPhase() == 3:

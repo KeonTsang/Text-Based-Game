@@ -6,7 +6,7 @@ from colorama import Fore
 class Centrifuge(Monster):
 
     def __init__(self):
-        super(Centrifuge, self).__init__("C3ntri", 40, 15, 10, 0.01, Fore.LIGHTYELLOW_EX)
+        super(Centrifuge, self).__init__("C3ntri", 25, 15, 10, 0.01, Fore.LIGHTYELLOW_EX)
 
     def execute_spare(self):
         if self.getPhase() == 3:
