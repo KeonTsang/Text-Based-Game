@@ -2,7 +2,6 @@ from colorama import Fore
 import rooms as rooms
 import player as player
 
-
 def print_map():
 
     ROOM_1 = '?'
