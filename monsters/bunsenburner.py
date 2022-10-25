@@ -3,28 +3,10 @@ from monsters.monster import Monster
 from colorama import Fore
 
 
-class Bunsen_Burner(Monster):
+class BunsenBurner(Monster):
 
     def __init__(self):
-        super(Bunsen_Burner, self).__init__("Mr Burns", 15, 15, 1, 0.25, Fore.RED)
-
-    def phase1(self):
-        self.command_reader()
-        if not self.isAlive():
-            return
-        self.attack()
-
-    def phase2(self):
-        self.command_reader()
-        if not self.isAlive():
-            return
-        self.attack()
-
-    def phase3(self):
-        self.command_reader()
-        if not self.isAlive():
-            return
-        self.attack()
+        super(BunsenBurner, self).__init__("Mr Burns", 10, 7, 1, 0.25, Fore.RED)
 
     def execute_spare(self):
         if self.getPhase() == 3:
@@ -60,21 +42,22 @@ class Bunsen_Burner(Monster):
         player.karma += 1
 
     def print_description(self):
-        description = f"\n{self.name} Mr Burns appeared!\n\n{self.name}: " + self.colour + "'I'm Mr Burns and you're going to burn'\n" + Fore.RESET
-        image = """......~~......
-                   ......~~......
-                   ......~~......
-                   ......||......
-                   ......||......
-                   ......||......
-                   ......||......
-                   ......||......
-                   ......||......
-                   ......||......
-                   ......||......
-                   ......||......
-                   ...../==\.....
-                   .============."""
+        description = f"\n{self.name} the Bunsen Burner appeared!\n\n{self.name}: " + self.colour + \
+                      f"'I'm {self.name} and you're going to burn'\n" + Fore.RESET
+        image = """      ~~      
+                         ~~      
+                         ~~      
+                         ||      
+                         ||      
+                         ||      
+                         ||      
+                         ||      
+                         ||      
+                         ||      
+                         ||      
+                         ||      
+                        /==\     
+                    ============ """
 
         print(description, image)
         self.display_health()
