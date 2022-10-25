@@ -8,24 +8,6 @@ class Stethoscope(Monster):
     def __init__(self):
         super(Stethoscope, self).__init__("Stephy", 20, 7, 5, 0.05, Fore.LIGHTMAGENTA_EX)
 
-    def phase1(self):
-        self.command_reader()
-        if not self.isAlive():
-            return
-        self.attack()
-
-    def phase2(self):
-        self.command_reader()
-        if not self.isAlive():
-            return
-        self.attack()
-
-    def phase3(self):
-        self.command_reader()
-        if not self.isAlive():
-            return
-        self.attack()
-
     def execute_spare(self):
         if self.getPhase() == 3:
             self.spare()
@@ -69,14 +51,14 @@ class Stethoscope(Monster):
         image = """                 
           (   )   (   )  
            | |     | |   
-           \\ \     / /   
-            \\ \   / /    
-             \\ \_/ /     
-              \   /      
-         [ :)]  \ \      
+           \ \     / /   
+            \ \   / /    
+             \ \_/ /     
+          ___ \   /      
+         [: )]  \ \      
           | |    | |     
-           \\ \   | |     
-            \\ \_/ /      
+           \ \   | |     
+            \ \_/ /      
              \___/       
                          """
         print(description, image)
