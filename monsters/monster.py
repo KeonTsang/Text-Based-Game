@@ -12,7 +12,7 @@ class Monster:
 
     description = ""
 
-    def __init__(self, name, max_hp, max_damage, min_damage, miss_chance):
+    def __init__(self, name, max_hp, max_damage, min_damage, miss_chance, colour):
         self.name = name
         self.health = max_hp
         self.max_hp = max_hp
@@ -21,6 +21,7 @@ class Monster:
         self.miss_chance = miss_chance
         self.phase = 1
         self.isSpare = False
+        self.colour = colour
 
     # Returns damage value dealt by entity
     def attack(self):

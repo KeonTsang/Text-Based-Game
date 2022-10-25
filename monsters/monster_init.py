@@ -6,8 +6,10 @@ import player
 import health
 import os
 from monsters.stethoscope import Stethoscope
+from monsters.testtuberack import TestTubeRack
 
 stephy = Stethoscope()
+sgtripper = TestTubeRack()
 
 
 def end_phase():
@@ -26,19 +28,16 @@ def battleMonster(monster):
         if monster.getPhase() == 1:
             player.display_health()
             monster.print_description()
-            monster.display_health()
             monster.phase1()
             end_phase()
         elif monster.getPhase() == 2:
             player.display_health()
             monster.print_description()
-            monster.display_health()
             monster.phase2()
             end_phase()
         elif monster.getPhase() == 3:
             player.display_health()
             monster.print_description()
-            monster.display_health()
             monster.phase3()
             end_phase()
         if player.player_health < 1:

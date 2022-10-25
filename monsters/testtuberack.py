@@ -1,12 +1,23 @@
 import player
 from monsters.monster import Monster
 from colorama import Fore
+import random
 
-
-class Stethoscope(Monster):
+class TestTubeRack(Monster):
 
     def __init__(self):
-        super(Stethoscope, self).__init__("Stephy", 20, 7, 5, 0.05, Fore.LIGHTMAGENTA_EX)
+        super(TestTubeRack, self).__init__("Sgt Ripper", 30, 12, 6, 0.15, Fore.LIGHTGREEN_EX)
+
+    # Overidden from super
+    def attack(self):
+        if not self.isSpared():
+            damage = 0 if random.random() < self.miss_chance else random.randint(self.min_damage, self.max_damage)
+            if damage == 0:
+                print(f"\n{self.name} fired a test tube but it missed!")
+            else:
+                print(f"\n{self.name} launched a test tube at you for {damage} hit points!")
+                player.player_health -= damage
+
 
     def phase1(self):
         self.command_reader()
@@ -33,39 +44,36 @@ class Stethoscope(Monster):
             print(f"You cannot spare {self.name} yet!")
 
     def execute_talk(self):
-        if self.getPhase() == 1:
-            print(f"\nYou told {self.name} it is great at listening to hearts!")
-            print(f"{self.name}: " + self.colour + " 'Thank you! Maybe I could try listening to yours!'" + Fore.RESET)
-            self.setPhase(2)
-        else:
-            print(f"\nYou complement {self.name} again!")
-            print(f"{self.name}: " + self.colour + "'Thanks friend!'" + Fore.RESET)
+        print(f"\nYou told {self.name} it shoots cool rockets!")
+        print(f"{self.name}: " + self.colour + " 'Flattery won't save you soldier!'" + Fore.RESET)
 
     def execute_action(self):
         if self.getPhase() == 1:
-            print(f"\nYou try to get {self.name} to measure your heart beat!")
-            print(f"{self.name}: " + self.colour + "'Woah I barely know you!'" + Fore.RESET)
+            print(f"\nYou launch a test tube into the air!")
+            print(f"{self.name}: " + self.colour + "'Nice shot soldier, but you'll never beat this!'" + Fore.RESET)
+            self.setPhase(2)
         else:
-            print(f"\nYou let the {self.name} measure your heart beat!")
-            print(f"{self.name}: " + self.colour + "'You have a great beat partner!'" + Fore.RESET)
+            print(f"\nYou launch another test tube even higher than {self.name} !")
+            print(f"{self.name}: " + self.colour + "'Alright son, you got me! I can't beat that.'" + Fore.RESET)
             self.setPhase(3)
 
     def execute_attack(self):
         weapon = player.current_weapon
         damage = weapon.attack()
         print(f"\nYou dealt {damage} to {self.name} using your {weapon.name}!")
-        print(f"{self.name}: " + self.colour + "'Owww!!! That hurts!'" + Fore.RESET)
+        print(f"{self.name}: " + self.colour + "'You're risking court martial trooper!'" + Fore.RESET)
         self.damage(damage)
         self.setPhase(1)
 
     def spare(self):
         print(f"\nYou spared {self.name}")
-        print(f"{self.name}: " + self.colour + "'That was fun! We should do this again sometime! Bye now!'" + Fore.RESET)
+        print(
+            f"{self.name}: " + self.colour + "'Thanks for having a thrilling battle with your old sergeant.'" + Fore.RESET)
         self.setSpared()
         player.karma += 1
 
     def print_description(self):
-        description = f"\n{self.name} the Stethoscope appeared!\n\n{self.name}: " + self.colour + "'Stephy is my name, measuring heart beats is my game!'\n" + Fore.RESET
+        description = f"\n{self.name} the Test Tube Rack appeared!\n\n{self.name}: " + self.colour + f"'{self.name} here reporting for duty!'\n" + Fore.RESET
         image = """                 
           (   )   (   )  
            | |     | |   
