@@ -3,8 +3,11 @@ from items.item import Item
 
 # Weapons
 
-fist = Weapon("Fist", 5, 4, 0.05, """Your bare fists.\nFists have a higher chance of dealing a critical blow.""")
-bunsen = Weapon("Bunsen burner", 12,7,0.05,"A bunsen burner that can shoot fire, capable of dealing considerable damage") 
+fist = Weapon("Fist", 4, 2, 0.20, """Your bare fists.\nFists have a higher chance of dealing a critical blow.""")
+stethoscope = Weapon("Stethoscope", 8, 4, 0.10,"A bunsen burner that can shoot fire, capable of dealing considerable damage")
+centrifuge = Weapon("Centrifuge", 10, 7, 0.05,"A bunsen burner that can shoot fire, capable of dealing considerable damage")
+testtube = Weapon("Test Tube Rocket", 12, 10, 0.05,"A bunsen burner that can shoot fire, capable of dealing considerable damage")
+bunsen = Weapon("Bunsen burner", 15, 8, 0.15,"A bunsen burner that can shoot fire, capable of dealing considerable damage")
 
 # Items
 

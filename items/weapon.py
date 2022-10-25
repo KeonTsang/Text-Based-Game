@@ -1,4 +1,5 @@
 import random
+from colorama import Fore
 
 from items.item import Item
 
@@ -16,6 +17,7 @@ class Weapon(Item):
         damage = random.randint(self.min_damage, self.max_damage)
         if random.random() < self.crit_chance:
             damage = damage * 2
+            print(Fore.LIGHTRED_EX + "Critical Hit!")
         return damage
 
     # Prints weapon stats

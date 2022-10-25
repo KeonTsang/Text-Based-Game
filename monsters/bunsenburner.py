@@ -15,49 +15,56 @@ class BunsenBurner(Monster):
             print(f"You cannot spare {self.name} yet!")
 
     def execute_talk(self):
-        print(f"\nYou told {self.name} You're on fire!")
-        print(f"{self.name}: " + self.colour + " 'Oh no..., anyways.'" + Fore.RESET)
-
-    def execute_action(self):
-        if self.getPhase() == 1:
-            print(f"\n You try to pour water on him")
-            print(f"{self.name}: " + self.colour + "'Fires beats water, DUH!'" + Fore.RESET)
+        if (self.getPhase() == 1):
+            print(f"\nYou told {self.name} that he is a hot head!")
+            print(f"{self.name}: " + self.colour + " 'Now you're firing me up!'" + Fore.RESET)
+            self.setPhase(2)
         else:
-            print(f"\nYou pour an enormous amount of water onto {self.name} ")
-            print(f"{self.name}: " + self.colour + "'Not bad, but its not over!'" + Fore.RESET)
-            self.setPhase(3)
+            print(f"\nYou told {self.name} that he is a hot head!")
+            print(f"{self.name}: " + self.colour + " 'You're not firing me up anymore!'" + Fore.RESET)
+    def execute_action(self):
+        print(f"\n You try to pour water on him")
+        print(f"{self.name}: " + self.colour + "'Fires beats water, DUH!'" + Fore.RESET)
 
     def execute_attack(self):
-        weapon = player.current_weapon
-        damage = weapon.attack()
-        print(f"\nYou dealt {damage} to {self.name} using your {weapon.name}!")
-        print(f"{self.name}: " + self.colour + "'That hurt, only a bit.'" + Fore.RESET)
-        self.damage(damage)
-        self.setPhase(1)
+        if (self.getPhase() == 2):
+            weapon = player.current_weapon
+            damage = weapon.attack()
+            print(f"\nYou dealt {damage} to {self.name} using your {weapon.name}!")
+            print(f"{self.name}: " + self.colour + "'WOAHHHH now thats what I call fired up!'" + Fore.RESET)
+            self.damage(damage)
+            self.setPhase(3)
+        else:
+            weapon = player.current_weapon
+            damage = weapon.attack()
+            print(f"\nYou dealt {damage} to {self.name} using your {weapon.name}!")
+            print(f"{self.name}: " + self.colour + "'That hurt, only a bit.'" + Fore.RESET)
+            self.damage(damage)
+            self.setPhase(3)
 
     def spare(self):
         print(f"\nYou spared {self.name}")
-        print(f"{self.name}: " + self.colour + "'Thanks, that was very cool of you.'" + Fore.RESET)
+        print(f"{self.name}: " + self.colour + "'That battle was as intense as my flames!'" + Fore.RESET)
         self.setSpared()
         player.karma += 1
 
     def print_description(self):
         description = f"\n{self.name} the Bunsen Burner appeared!\n\n{self.name}: " + self.colour + \
                       f"'I'm {self.name} and you're going to burn'\n" + Fore.RESET
-        image = """      ~~      
-                         ~~      
-                         ~~      
-                         ||      
-                         ||      
-                         ||      
-                         ||      
-                         ||      
-                         ||      
-                         ||      
-                         ||      
-                         ||      
-                        /==\     
-                    ============ """
+        image = """              
+                         ~~~     
+                        ~~~~~     
+                        ~~~~~      
+                         | |      
+                         | |      
+                         | |      
+                         | |      
+                         | |      
+                         | |      
+                         | |      
+                         | |      
+                        /===\     
+                   [=============] """
 
         print(description, image)
         self.display_health()
