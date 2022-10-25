@@ -11,5 +11,5 @@ current_weapon = item_init.fist
 # Start game at the reception
 current_room = rooms["Hyperbaric Chamber"]
 
-def displayHealth():
+def display_health():
     print(health.genHealthBar(player_health))

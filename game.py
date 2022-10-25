@@ -30,6 +30,10 @@ os.system('cls' if os.name == 'nt' else 'clear')
 
 #####################################################################################################################
 
+endGame = False
+def end_game():
+    endGame = True;
+
 def list_of_items(items):
     return ", ".join([item.name for item in items])
 
@@ -199,7 +203,7 @@ def move(exits, direction):
 
 def main():
     # Main game loop
-    while True:
+    while not endGame:
         #Clears screen
         os.system('cls' if os.name == 'nt' else 'clear')
         

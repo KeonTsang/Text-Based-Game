@@ -4,22 +4,6 @@ from monsters.monster import Monster
 
 class Stethoscope(Monster):
 
-    image = """.................
-..(   )...(   )..
-...| |.....| |...
-...| |.....| |...
-...\\ \...../ /...
-....\\ \.../ /....
-.....\\ \_/ /.....
-......\   /......
-...__..| |.......
-..(  )..\ \......
-...||....| |.....
-....\\\...| |.....
-.....\\\_/ /......
-......\__/.......
-................."""
-
     def __init__(self):
         super(Stethoscope, self).__init__("Stephy", 20, 7, 5, 0.05)
 
@@ -78,3 +62,23 @@ class Stethoscope(Monster):
         print(f"{self.name}: That was fun! We should do this again sometime! Bye now!")
         self.setSpared()
         player.karma += 1
+
+    def print_description(self):
+        description = f"\n{self.name} the Stethoscope appeared!\nWhat will you do?\n"
+        image = """                 
+          (   )   (   )  
+           | |     | |   
+           | |     | |   
+           \\ \     / /   
+            \\ \   / /    
+             \\ \_/ /     
+              \   /      
+          ___  | |       
+         [ :)]  \ \      
+          | |    | |     
+           \\ \   | |     
+            \\ \_/ /      
+             \___/       
+                         """
+
+        print(description, image)

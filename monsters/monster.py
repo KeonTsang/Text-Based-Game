@@ -10,6 +10,8 @@ import player
 class Monster:
     __metaclass__ = ABCMeta
 
+    description = ""
+
     def __init__(self, name, max_hp, max_damage, min_damage, miss_chance):
         self.name = name
         self.health = max_hp
@@ -66,27 +68,37 @@ class Monster:
 
     # Takes in inputs from user
     def command_reader(self):
-        command = input(Fore.RED + "\n(!)" + Fore.RESET + f" ATTACK {self.name}\n" +
-                        Fore.CYAN + "(?)" + Fore.RESET + f" TALK to {self.name}\n" +
-                        Fore.YELLOW + "(*)" + Fore.RESET + f" use an ACTION on {self.name}\n" +
-                        Fore.GREEN + "(~)" + Fore.RESET + f" SPARE {self.name}\n\n")
-        self.execute_command(game_parser.normalise_input(command))
+        notValidCommand = True
+        while notValidCommand:
+            command = input(Fore.RED + "\n(!)" + Fore.RESET + f" ATTACK {self.name}\n" +
+                            Fore.CYAN + "(?)" + Fore.RESET + f" TALK to {self.name}\n" +
+                            Fore.YELLOW + "(*)" + Fore.RESET + f" use an ACTION on {self.name}\n" +
+                            Fore.GREEN + "(~)" + Fore.RESET + f" SPARE {self.name}\n\n")
+            notValidCommand = self.execute_command(game_parser.normalise_input(command))
 
     # Command parser
     def execute_command(self, command):
+
         if 0 == len(command):
-            return
+            print("Sorry I didn't understand that!\n")
+            input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
+            return True
         if command[0] == "spare":
             self.execute_spare()
+            return False
         elif command[0] == "talk":
             self.execute_talk()
+            return False
         elif command[0] == "attack":
             self.execute_attack()
+            return False
         elif command[0] == "action":
             self.execute_action()
+            return False
         else:
             print(f"'{command[0]}' -> Makes no sense.")
             input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
+            return True
 
     @abstractmethod
     def execute_spare(self):
@@ -119,4 +131,8 @@ class Monster:
 
     @abstractmethod
     def spare(self):
+        pass
+
+    @abstractmethod
+    def print_description(self):
         pass
