@@ -156,7 +156,7 @@ def execute_command(command):
         else:
             print("Drop what?")
 
-    elif command[0] == "look":
+    elif command[0] == "look" or command[0] == "inspect" or command[0] == "observe" or command[0] == "examine": 
         if len(command) > 1:
             execute_look(command[1])
         else:

@@ -16,6 +16,8 @@ HYPERBARIC_CHAMBER = {
 
     "items": [item_init.map],
 
+    "monsters": [],
+
     "discovered" : False
 }
 
@@ -29,9 +31,11 @@ MAIN_FLOOR = {
     The eery silence frightens you.
     """,
 
-    "exits": {"east": "Hyperbaric Chamber", "west": "Testing Area", "north": "Reception Area"},
+    "exits": {"east": "Hyperbaric Chamber", "west": "Testing Area"},
 
     "items": [item_init.keycard],
+
+    "monsters": [],
 
     "discovered" : False
 }
@@ -49,6 +53,8 @@ TESTING_AREA = {
 
     "items": [],
 
+    "monsters": [],
+
     "discovered" : False
 }
 
@@ -65,9 +71,10 @@ RECEPTION_AREA = {
 
     "items": [],
 
+    "monsters": [],
+
     "discovered" : False
 }
-
 
 
 rooms = {

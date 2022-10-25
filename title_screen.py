@@ -21,26 +21,56 @@ Confused, you awake from a slumber, bruised and battered.
 
 Your name is unknown to you, but you know that you are someone of importance.
 
+
 You find yourself in a room, with an odd sense of familiarity.
+
 
 The gentle ring of a PA system chimes:
 
-"Test subject #1 - Please make your way to the testing area."
+"Subject #1 - Please make your way to the testing area."
+
+
+The PA system chimes once more - it's a slogan:
+
+"A helping hand - for a better tomorrow."
+
 
 You have no choice but to follow the instructions.
 """
 
 scrambled_title = """
-  ██████▓██   ██▓ ███▄ ▄███▓ ▄▄▄▄    ██▓ ▒█████    ██████  ██▓   ██████ 
-▒█   ▒ ▒██  ██▒▓██▒▀█▀██▒▓█████▄ ▓██▒▒██▒  ██▒▒██   ▒ ▓██▒▒██    ▒ 
-░ ▓█▄    ▒██ ██░▓██    ▓██░▒██▒ ▄██▒██▒▒██░  ██▒░ ▓██▄   ▒██▒░ ▓██▄   
-  ▒ ██▒ ▐██▓░▒██    ▒██ ▒██░█▀  ░██░▒██   ██░  ▒   ██▒░██░  ▒    ██▒
-▒██████▒▒ ░ ██▒▓░▒██▒   ░██▒░▓█ ▀█▓░██░░ ████▓▒░▒██████▒▒░██░▒██████▒▒
+  ██████▓██   ██▓ ███▄ ▄███▓    ▄▄▄▄      ██▓   ▒█████    ██████  ██▓   ██████ 
+▒█   ▒ ▒██  ██▒▓██▒▀█▀██▒▓██ ███▄   ▓██▒▒██   ▒  ██▒▒██   ▒ ▓██▒▒██    ▒ 
+░ ▓█▄    ▒██ ██░▓██    ▓██  ░▒██▒   ▄██▒██▒▒█  █░  ██▒░  ▓██▄   ▒██▒░ ▓██▄   
+  ▒ ██▒ ▐██▓░▒██    ▒██ ▒█ █░█▀   ░ ██░▒██    ██░  ▒    ██▒░██░  ▒    ██▒
+▒██████▒▒ ░ ██▒▓░▒██▒   ░█ █▒░▓█ ▀█▓░██░░ ████▓▒░ ▒██████▒▒░██░▒██████▒▒
 ▒ ▒▓▒ ▒ ░  ██▒▒▒ ░ ▒░   ░  ░░▒▓███▀▒░▓  ░ ▒░▒░▒░ ▒ ▒▓▒ ▒ ░░▓  ▒ ▒▓▒ ▒ ░
 ░ ░▒  ░ ░▓██ ░▒░ ░  ░     ░▒░▒   ░  ▒ ░  ░ ▒ ▒░ ░ ░▒  ░ ░ ▒ ░░ ░▒  ░ ░
 ░  ░  ░  ▒ ▒ ░░  ░      ░    ░    ░  ▒ ░░ ░ ░  ▒  ░  ░  ░   ▒ ░░  ░   ░  
       ░  ░ ░            ░    ░       ░      ░ ░        ░   ░        ░  
          ░ ░                      ░                                     
+"""
+
+text_under_title_2 = f"""
+{Fore.LIGHTBLUE_EX}Confused, you awake from a slumber, bruised and battered.
+                                                 {Fore.BLACK}why am i important? ➘ {Fore.LIGHTBLUE_EX}
+Your name is unknown to you, but you know that you are someone of importance.
+
+
+You find yourself in a room, with an odd sense of familiarity.
+                            {Fore.BLACK}have i been here before? ➚ {Fore.LIGHTBLUE_EX}
+
+The gentle ring of a PA system chimes:
+
+"Subject #1 - please make your way to the testing area."
+    {Fore.BLACK}⬆ who am i? {Fore.LIGHTBLUE_EX}
+
+The PA system chimes a slogan:
+
+"A helping hand - for a better tomorrow."
+
+
+You have no choice but to follow the instructions.{Style.RESET_ALL}
 """
 
 def print_title():
@@ -71,12 +101,12 @@ def print_title():
     #Re-prints the title screen.
     os.system('cls' if os.name == 'nt' else 'clear')
     print(Fore.RED + scrambled_title + Style.RESET_ALL)
-    print(Fore.YELLOW + text_under_title)
-    print(Fore.RED + Style.DIM + "Please wait..." + Style.RESET_ALL)
+    print(text_under_title_2)
+    print(Fore.WHITE + Style.BRIGHT + "Loading... " + Style.RESET_ALL)
 
     #Plays confirming sound after ENTER is pressed and removed.
     music.play_click_music()
-    time.sleep(2)
+    time.sleep(3)
 
     #Clears screen in prep for the game.
     os.system('cls' if os.name == 'nt' else 'clear')

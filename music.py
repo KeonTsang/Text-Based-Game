@@ -9,7 +9,7 @@ pygame.init()
 #Plays 'main game' music.
 def play_main_game_music():
     pygame.mixer.music.load("music_assets/main_music_theme.mp3")
-    pygame.mixer.music.play()
+    pygame.mixer.music.play(-1) #Loops music infinitely "-1".
 
 #Plays 'title screen' music.
 def play_title_screen_music():
