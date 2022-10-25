@@ -31,7 +31,7 @@ def print_map():
 
     #Sets the correct icon for RECEPTION AREA:
     if rooms.RECEPTION_AREA["discovered"] == True:
-        RA_ICON = Fore.LIGHTYELLOW + 'R'
+        RA_ICON = Fore.LIGHTYELLOW_EX + 'R'
     else:
         RA_ICON = '?'
 

@@ -10,7 +10,9 @@ import player
 class Monster:
     __metaclass__ = ABCMeta
 
-    def __init__(self, name, max_hp, max_damage, min_damage, miss_chance):
+    description = ""
+
+    def __init__(self, name, max_hp, max_damage, min_damage, miss_chance, colour):
         self.name = name
         self.health = max_hp
         self.max_hp = max_hp
@@ -19,6 +21,7 @@ class Monster:
         self.miss_chance = miss_chance
         self.phase = 1
         self.isSpare = False
+        self.colour = colour
 
     # Returns damage value dealt by entity
     def attack(self):
@@ -66,27 +69,57 @@ class Monster:
 
     # Takes in inputs from user
     def command_reader(self):
-        command = input(Fore.RED + "\n(!)" + Fore.RESET + f" ATTACK {self.name}\n" +
-                        Fore.CYAN + "(?)" + Fore.RESET + f" TALK to {self.name}\n" +
-                        Fore.YELLOW + "(*)" + Fore.RESET + f" use an ACTION on {self.name}\n" +
-                        Fore.GREEN + "(~)" + Fore.RESET + f" SPARE {self.name}\n\n")
-        self.execute_command(game_parser.normalise_input(command))
+        notValidCommand = True
+        while notValidCommand:
+            command = input(Fore.RED + "\n(!)" + Fore.RESET + f" ATTACK {self.name}\n" +
+                            Fore.CYAN + "(?)" + Fore.RESET + f" TALK to {self.name}\n" +
+                            Fore.YELLOW + "(*)" + Fore.RESET + f" use an ACTION on {self.name}\n" +
+                            Fore.GREEN + "(~)" + Fore.RESET + f" SPARE {self.name}\n\n")
+            notValidCommand = self.execute_command(game_parser.normalise_input(command))
 
     # Command parser
     def execute_command(self, command):
+
         if 0 == len(command):
-            return
+            print("Sorry I didn't understand that!\n")
+            input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
+            return True
         if command[0] == "spare":
             self.execute_spare()
+            return False
         elif command[0] == "talk":
             self.execute_talk()
+            return False
         elif command[0] == "attack":
             self.execute_attack()
+            return False
         elif command[0] == "action":
             self.execute_action()
+            return False
         else:
             print(f"'{command[0]}' -> Makes no sense.")
             input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
+            return True
+
+
+    # Battle Phases
+    def phase1(self):
+        self.command_reader()
+        if not self.isAlive():
+            return
+        self.attack()
+
+    def phase2(self):
+        self.command_reader()
+        if not self.isAlive():
+            return
+        self.attack()
+
+    def phase3(self):
+        self.command_reader()
+        if not self.isAlive():
+            return
+        self.attack()
 
     @abstractmethod
     def execute_spare(self):
@@ -104,19 +137,10 @@ class Monster:
     def execute_action(self):
         pass
 
-    # Battle Phases
-    @abstractmethod
-    def phase1(self):
-        pass
-
-    @abstractmethod
-    def phase2(self):
-        pass
-
-    @abstractmethod
-    def phase3(self):
-        pass
-
     @abstractmethod
     def spare(self):
+        pass
+
+    @abstractmethod
+    def print_description(self):
         pass

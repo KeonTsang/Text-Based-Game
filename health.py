@@ -22,7 +22,7 @@ def health_bar_init(it, prefix="", size=60, colour=Fore.WHITE, out=sys.stdout):
 
 
 def genHealthBar(health):
-    healthBar = (Fore.GREEN if health > 40 else Fore.YELLOW if health > 20 else Fore.RED) + "Health: ["
+    healthBar = (Fore.GREEN if health > 40 else Fore.YELLOW if health > 20 else Fore.RED) + "Your Health: ["
     for i in range(0, 51):
         healthBar += " " if i == 0 and health == 0 else "#" if i <= math.floor(health / 2) else " "
     healthBar += f"] {health}/100" + Fore.RESET
