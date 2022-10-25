@@ -1,18 +1,12 @@
 import player
 from monsters.monster import Monster
 from colorama import Fore
-
+from items import item_init
 
 class Centrifuge(Monster):
 
     def __init__(self):
-        super(Centrifuge, self).__init__("C3ntri", 25, 15, 10, 0.01, Fore.LIGHTYELLOW_EX)
-
-    def execute_spare(self):
-        if self.getPhase() == 3:
-            self.spare()
-        else:
-            print(f"You cannot spare {self.name} yet!")
+        super(Centrifuge, self).__init__("C3ntri", 25, 15, 10, 0.01, Fore.LIGHTYELLOW_EX, item_init.centrifuge)
 
     def execute_talk(self):
         if self.getPhase() == 1:

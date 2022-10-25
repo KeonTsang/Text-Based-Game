@@ -124,9 +124,11 @@ class Monster:
             return
         self.attack()
 
-    @abstractmethod
     def execute_spare(self):
-        pass
+        if self.getPhase() == 3:
+            self.spare()
+        else:
+            print(f"You cannot spare {self.name} yet!")
 
     @abstractmethod
     def execute_talk(self):

@@ -1,18 +1,23 @@
 import player
 from monsters.monster import Monster
+from items import item_init
 from colorama import Fore
+import random
 
 
 class BunsenBurner(Monster):
 
     def __init__(self):
-        super(BunsenBurner, self).__init__("Mr Burns", 30, 12, 1, 0.25, Fore.RED)
+        super(BunsenBurner, self).__init__("Mr Burns", 20, 12, 1, 0.05, Fore.RED, item_init.bunsen)
 
-    def execute_spare(self):
-        if self.getPhase() == 3:
-            self.spare()
-        else:
-            print(f"You cannot spare {self.name} yet!")
+    def attack(self):
+        if not self.isSpared():
+            damage = 0 if random.random() < self.miss_chance else random.randint(self.min_damage, self.max_damage)
+            if damage == 0:
+                print(f"\n{self.name} blew fire at you but missed!")
+            else:
+                print(f"\n{self.name} burned you with fire for {damage} hit points!")
+                player.player_health -= damage
 
     def execute_talk(self):
         if (self.getPhase() == 1):
