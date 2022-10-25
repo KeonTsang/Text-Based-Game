@@ -19,7 +19,7 @@ def end_phase():
 
 def battleMonster(monster):
     os.system('cls' if os.name == 'nt' else 'clear')
-    for i in health.health_bar_init(range(player.player_health), "Health: ", 50, Fore.GREEN):
+    for i in health.health_bar_init(range(player.player_health), "Your Health: ", 50, Fore.GREEN):
         time.sleep(0.01)
     os.system('cls' if os.name == 'nt' else 'clear')
 

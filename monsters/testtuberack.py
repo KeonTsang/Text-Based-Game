@@ -6,7 +6,7 @@ import random
 class TestTubeRack(Monster):
 
     def __init__(self):
-        super(TestTubeRack, self).__init__("Sgt Ripper", 30, 12, 6, 0.15, Fore.LIGHTGREEN_EX)
+        super(TestTubeRack, self).__init__("Sgt Ripper", 30, 12, 6, 0.15, Fore.LIGHTRED_EX)
 
     # Overidden from super
     def attack(self):
@@ -74,20 +74,18 @@ class TestTubeRack(Monster):
 
     def print_description(self):
         description = f"\n{self.name} the Test Tube Rack appeared!\n\n{self.name}: " + self.colour + f"'{self.name} here reporting for duty!'\n" + Fore.RESET
-        image = """                 
-          (   )   (   )  
-           | |     | |   
-           | |     | |   
-           \\ \     / /   
-            \\ \   / /    
-             \\ \_/ /     
-              \   /      
-          ___  | |       
-         [ :)]  \ \      
-          | |    | |     
-           \\ \   | |     
-            \\ \_/ /      
-             \___/       
+        image = """
+                         
+       \ / \ / \ /          
+      _| |_| |_| |_________        
+     / | | | | | |  <==>  /        
+    /____________________/|        
+    |  | | | | | |  \ /  ||        
+    |  | | | | | |  0 0  ||        
+    |  | | | | | | \_^_/ ||        
+    |  \_/ \_/ \_/ \___/ |/        
+    |____________________/         
+                         
                          """
         print(description, image)
         self.display_health()
