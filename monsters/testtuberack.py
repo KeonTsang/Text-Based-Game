@@ -18,25 +18,6 @@ class TestTubeRack(Monster):
                 print(f"\n{self.name} launched a test tube at you for {damage} hit points!")
                 player.player_health -= damage
 
-
-    def phase1(self):
-        self.command_reader()
-        if not self.isAlive():
-            return
-        self.attack()
-
-    def phase2(self):
-        self.command_reader()
-        if not self.isAlive():
-            return
-        self.attack()
-
-    def phase3(self):
-        self.command_reader()
-        if not self.isAlive():
-            return
-        self.attack()
-
     def execute_spare(self):
         if self.getPhase() == 3:
             self.spare()
@@ -67,8 +48,7 @@ class TestTubeRack(Monster):
 
     def spare(self):
         print(f"\nYou spared {self.name}")
-        print(
-            f"{self.name}: " + self.colour + "'Thanks for having a thrilling battle with your old sergeant.'" + Fore.RESET)
+        print(f"{self.name}: " + self.colour + "'Thanks for having a thrilling battle with your old sergeant.'" + Fore.RESET)
         self.setSpared()
         player.karma += 1
 

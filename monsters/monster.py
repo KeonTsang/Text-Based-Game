@@ -101,6 +101,26 @@ class Monster:
             input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
             return True
 
+
+    # Battle Phases
+    def phase1(self):
+        self.command_reader()
+        if not self.isAlive():
+            return
+        self.attack()
+
+    def phase2(self):
+        self.command_reader()
+        if not self.isAlive():
+            return
+        self.attack()
+
+    def phase3(self):
+        self.command_reader()
+        if not self.isAlive():
+            return
+        self.attack()
+
     @abstractmethod
     def execute_spare(self):
         pass
@@ -115,19 +135,6 @@ class Monster:
 
     @abstractmethod
     def execute_action(self):
-        pass
-
-    # Battle Phases
-    @abstractmethod
-    def phase1(self):
-        pass
-
-    @abstractmethod
-    def phase2(self):
-        pass
-
-    @abstractmethod
-    def phase3(self):
         pass
 
     @abstractmethod

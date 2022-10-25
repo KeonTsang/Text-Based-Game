@@ -7,9 +7,11 @@ import health
 import os
 from monsters.stethoscope import Stethoscope
 from monsters.testtuberack import TestTubeRack
+from monsters.centrifuge import Centrifuge
 
 stephy = Stethoscope()
 sgtripper = TestTubeRack()
+c3nti = Centrifuge()
 
 
 def end_phase():
