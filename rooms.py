@@ -12,7 +12,7 @@ HYPERBARIC_CHAMBER = {
     Although nearly barren, there in an odd, life-like, pulse in the air.
     """,
 
-    "exits": {"west": "Main Floor"},
+    "exits": {"west": "Med Bay"},
 
     "items": [item_init.map],
 
@@ -21,19 +21,18 @@ HYPERBARIC_CHAMBER = {
     "discovered" : False
 }
 
-MAIN_FLOOR = {
-    "name": "Main Floor",
+MED_BAY = {
+    "name": "Med Bay",
 
     "description":
     """
-    This is the main floor of the facility. It is in pristine condition.
-    There are a few doors leading off in different directions. There is no sign of human life.
-    The eery silence frightens you.
+    This seems to be the medical bay for the facility.
+    Although it seems void of human life, there is the undeniable stench of death.
     """,
 
     "exits": {"east": "Hyperbaric Chamber", "west": "Testing Area"},
 
-    "items": [item_init.keycard],
+    "items": [],
 
     "monsters": [],
 
@@ -49,9 +48,9 @@ TESTING_AREA = {
     The nature of these experiements is unknown to you.
     """,
 
-    "exits": {"east": "Main Floor"},
+    "exits": {"east": "Med Bay"},
 
-    "items": [],
+    "items": [item_init.keycard],
 
     "monsters": [],
 
@@ -67,7 +66,7 @@ RECEPTION_AREA = {
     There is a sign on the desk that reads: "Welcome to the facility. Please sign in."
     """,
 
-    "exits": {"south": "Main Floor"},
+    "exits": {"south": "Med Bay", "west": "Pyrotechnics Lab"},
 
     "items": [],
 
@@ -76,11 +75,49 @@ RECEPTION_AREA = {
     "discovered" : False
 }
 
+PYROTECHNICS_LAB = {
+    "name": "Pyrotechnics Lab",
+
+    "description":
+    """
+    This is the pyrotechnics lab. There are a few shelves with various chemicals on them.
+    There is a large, red, button on the wall. It is labelled: "In case of sentient fire - press".
+    """,
+
+    "exits": {"east": "Reception Area"},
+
+    "items": [],
+
+    "monsters": [],
+
+    "discovered" : False
+}
+
+NUCLEAR_TESTING_SITE = {
+    "name": "Nuclear Testing Site",
+
+    "description":
+    """
+    This seems to be a nuclear testing site. The room is filled with various nuclear devices.
+    They seem to resemble weapons, but you're unsure of their purpose.
+    There is a hazmat suit on behind a glass case.
+    """,
+
+    "exits": {"south": "Reception Area"},
+
+    "items": [],
+
+    "monsters": [],
+
+    "discovered" : False
+}
 
 rooms = {
     "Hyperbaric Chamber": HYPERBARIC_CHAMBER,
-    "Main Floor": MAIN_FLOOR,
+    "Med Bay": MED_BAY,
     "Testing Area": TESTING_AREA,
-    "Reception Area": RECEPTION_AREA
+    "Reception Area": RECEPTION_AREA,
+    "Pyrotechnics Lab": PYROTECHNICS_LAB,
+    "Nuclear Testing Site": NUCLEAR_TESTING_SITE
 }
 

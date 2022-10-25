@@ -32,7 +32,7 @@ os.system('cls' if os.name == 'nt' else 'clear')
 
 endGame = False
 def end_game():
-    endGame = True;
+    endGame = True
 
 def list_of_items(items):
     return ", ".join([item.name for item in items])
@@ -71,6 +71,8 @@ def print_exit(direction, leads_to):
 
 
 def print_menu(exits, room_items, inv_items):
+    global current_room
+
     print("You can:")
     # Iterate over available exits
     for direction in exits:
@@ -84,6 +86,10 @@ def print_menu(exits, room_items, inv_items):
     for item in inv_items:
         # Print the item name and description
         print(Fore.RED + "(★) " + Fore.RESET + "DROP " + item.name.upper() + " to drop " + item.name + ".")
+
+    if current_room == rooms["Reception Area"]:
+        print(print(Fore.RED + "(★) " + Fore.RESET + "USE KEYPAD" + " to use the keypad to the north."))
+
     print()
     print("What do you want to do?")
 
@@ -135,7 +141,24 @@ def execute_look(item_id):
             input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
             return
     print("You cannot look at that.")
-    
+
+def execute_use(item_to_use):
+    if item_to_use == "keypad":
+        user_input = input(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + "ENTER KEYCODE: ")
+        if user_input == "NUcL3@R":
+            print(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + "You hear a click and the door opens.")
+            input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
+            current_room["exits"]["north"] = "Nuclear Testing Site"
+
+            return
+        else:
+            print(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + "The keypad beeps and flashes red.")
+            input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
+            return 
+    else:
+        print("You cannot use that.")
+        input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
+
 
 def execute_command(command):
 
@@ -160,14 +183,17 @@ def execute_command(command):
         else:
             print("Drop what?")
 
+    elif command[0] == "use":
+        if len(command) > 1:
+            execute_use(command[1])
+        else:
+            print("Use what?")
+
     elif command[0] == "look" or command[0] == "inspect" or command[0] == "observe" or command[0] == "examine": 
         if len(command) > 1:
             execute_look(command[1])
         else:
             print("Look at what?")
-
-    elif command[0] == "damage":
-        player.player_health -= random.randint(0, 10)
 
     elif command[0] == "help":
         print()

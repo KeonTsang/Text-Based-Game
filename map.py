@@ -1,13 +1,22 @@
 from colorama import Fore 
 import rooms as rooms
 import player as player
+from items import item_init
+
 
 def print_map():
 
     ROOM_1 = '?'
     ROOM_2 = '?'
+    BARRIER_1 = '*'
     BARRIER = '*'
     BARRIER_TO_RECEPTION = '*'
+
+    if item_init.keycard in player.inventory:
+        rooms.MED_BAY["exits"]["north"] = "Reception Area" #Then opens barrier to reception.
+        BARRIER_TO_RECEPTION = Fore.WHITE + '.'
+    
+
 
     #Sets the correct icon for HYPERBARIC CHAMBER:
     if rooms.HYPERBARIC_CHAMBER["discovered"] == True: 
@@ -16,16 +25,14 @@ def print_map():
         HC_ICON = '?'
 
     #Sets the correct icon for MAIN FLOOR:
-    if rooms.MAIN_FLOOR["discovered"] == True:
+    if rooms.MED_BAY["discovered"] == True:
         MF_ICON = Fore.LIGHTYELLOW_EX + 'M'
     else:
         MF_ICON = '?'
 
     #Sets the correct icon for TESTING_AREA:
-    if rooms.TESTING_AREA["discovered"] == True: #Checks if testing area has been visited. 
+    if rooms.TESTING_AREA["discovered"] == True: 
         TA_ICON = Fore.LIGHTYELLOW_EX + 'T'
-        rooms.MAIN_FLOOR["exits"]["north"] = "Reception Area" #Then opens barrier to reception.
-        BARRIER_TO_RECEPTION = Fore.WHITE + '.'
     else:
         TA_ICON = '?'
 
@@ -35,23 +42,33 @@ def print_map():
     else:
         RA_ICON = '?'
 
+    if rooms.PYROTECHNICS_LAB["discovered"] == True:
+        PL_ICON = Fore.LIGHTYELLOW_EX + 'P'
+    else:
+        PL_ICON = '?'
+
+    if rooms.NUCLEAR_TESTING_SITE["discovered"] == True:
+        NT_ICON = Fore.LIGHTYELLOW_EX + 'N'
+    else:
+        NT_ICON = '?'
+
 
     map =(f"""
     ==================================================
     |~~~~~~~~~~~~~~~~~~~~~~|.................|~~~~~~~|
     |~~~~~~~~~~~~~~~~~~~~~~|.................|~~~~~~~|
-    |___________________~~~|........{Fore.YELLOW + ROOM_1 + Fore.RESET}........|~~~~~~~|
+    |___________________~~~|........{Fore.YELLOW + NT_ICON + Fore.RESET}........|~~~~~~~|
     |..................|~~~|.................|~~~~~~~|
     |..................|~~~|_______..._______|~~~~~~~|
     |..................|~~~~~~~~~~|...|~~~~~~~~~~~~~~|
     |..................|~~~~~~~~~~|...|~~~~~~~~~~~~~~|
     |..................|~~~~______|{Fore.CYAN + BARRIER + BARRIER + BARRIER + Fore.RESET}|______.~~~~~~~|
-    |.........{Fore.YELLOW + ROOM_2 + Fore.RESET}........|~~~|.................|~~~~~~~|
+    |.........{Fore.YELLOW + PL_ICON + Fore.RESET}........|~~~|.................|~~~~~~~|
     |..................|___|.................|_______|
-    |........................................{Fore.CYAN + BARRIER + Fore.RESET}........
+    |........................................{Fore.CYAN + BARRIER_1 + Fore.RESET}........
     |...............................{Fore.YELLOW + RA_ICON + Fore.RESET}........{Fore.CYAN + BARRIER + Fore.RESET}........
-    |........................................{Fore.CYAN + BARRIER + Fore.RESET}........
-    |...................___..................{Fore.CYAN + BARRIER + Fore.RESET}________
+    |........................................{Fore.CYAN + BARRIER_1 + Fore.RESET}........
+    |...................___..................{Fore.CYAN + BARRIER_1 + Fore.RESET}________
     |__________________|~~~|_______..._______|~~~~~~~|
     |______________________~~~~~~~|...|~~~~~~~~~~~~~~|
     |.....................|~~~~~~~|...|~~~~~~~~~~~~~~|
