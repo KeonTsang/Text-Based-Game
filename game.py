@@ -208,7 +208,7 @@ def main():
         os.system('cls' if os.name == 'nt' else 'clear')
         
         #Prints the health bar (no animation).
-        player.displayHealth()
+        player.display_health()
 
         #Sets discovery to True.
         current_room["discovered"] = True
