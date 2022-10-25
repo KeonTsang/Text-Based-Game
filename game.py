@@ -88,7 +88,7 @@ def print_menu(exits, room_items, inv_items):
         print(Fore.RED + "(★) " + Fore.RESET + "DROP " + item.name.upper() + " to drop " + item.name + ".")
 
     if current_room == rooms["Reception Area"]:
-        print(print(Fore.RED + "(★) " + Fore.RESET + "USE KEYPAD" + " to use the keypad to the north."))
+        print(Fore.RED + "(★) " + Fore.RESET + "USE KEYPAD" + " to use the keypad to the north.")
 
     print()
     print("What do you want to do?")
@@ -115,6 +115,7 @@ def execute_take(item_id):
             inventory.append(item)
             current_room["items"].remove(item)
             print(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + "You took " + item.name + ".")
+            print(Fore.LIGHTCYAN_EX + "(↳) " + Fore.RESET + item.get_description())
             input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
             return
     print("You cannot take that.")
@@ -143,22 +144,26 @@ def execute_look(item_id):
     print("You cannot look at that.")
 
 def execute_use(item_to_use):
-    if item_to_use == "keypad":
-        user_input = input(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + "ENTER KEYCODE: ")
-        if user_input == "NUcL3@R":
-            print(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + "You hear a click and the door opens.")
-            input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
-            current_room["exits"]["north"] = "Nuclear Testing Site"
-
-            return
+    if item_to_use == "keypad" and current_room == rooms["Reception Area"]:
+        if player.has_unlocked_nuclear_room == False:
+            user_input = input(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + "ENTER KEYCODE: ")
+            if user_input == "NUcL3@R":
+                print(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + "You hear a click and the door opens.")
+                input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
+                current_room["exits"]["north"] = "Nuclear Testing Site"
+                player.has_unlocked_nuclear_room = True
+                return 
+            else:
+                print(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + "The keypad beeps and flashes red.")
+                input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
+                return 
         else:
-            print(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + "The keypad beeps and flashes red.")
+            print(Fore.LIGHTGREEN_EX + "(!) " + Fore.RESET + "The door is already unlocked.")
             input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
             return 
     else:
-        print("You cannot use that.")
+        print(Fore.LIGHTBLUE_EX + "(!) " + Fore.RESET + "There is not a keypad in this room you can use.")
         input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
-
 
 def execute_command(command):
 

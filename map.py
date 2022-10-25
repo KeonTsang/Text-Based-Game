@@ -3,7 +3,6 @@ import rooms as rooms
 import player as player
 from items import item_init
 
-
 def print_map():
 
     ROOM_1 = '?'
@@ -16,7 +15,8 @@ def print_map():
         rooms.MED_BAY["exits"]["north"] = "Reception Area" #Then opens barrier to reception.
         BARRIER_TO_RECEPTION = Fore.WHITE + '.'
     
-
+    if player.has_unlocked_nuclear_room == True:
+        BARRIER = Fore.WHITE + '.'
 
     #Sets the correct icon for HYPERBARIC CHAMBER:
     if rooms.HYPERBARIC_CHAMBER["discovered"] == True: 
@@ -66,7 +66,7 @@ def print_map():
     |.........{Fore.YELLOW + PL_ICON + Fore.RESET}........|~~~|.................|~~~~~~~|
     |..................|___|.................|_______|
     |........................................{Fore.CYAN + BARRIER_1 + Fore.RESET}........
-    |...............................{Fore.YELLOW + RA_ICON + Fore.RESET}........{Fore.CYAN + BARRIER + Fore.RESET}........
+    |...............................{Fore.YELLOW + RA_ICON + Fore.RESET}........{Fore.CYAN + BARRIER_1 + Fore.RESET}........
     |........................................{Fore.CYAN + BARRIER_1 + Fore.RESET}........
     |...................___..................{Fore.CYAN + BARRIER_1 + Fore.RESET}________
     |__________________|~~~|_______..._______|~~~~~~~|
