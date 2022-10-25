@@ -6,8 +6,8 @@ from items import item_init
 
 class Stethoscope(Monster):
 
-    def __init__(self):
-        super(Stethoscope, self).__init__("Stephy", 15, 5, 1, 0.05, Fore.LIGHTMAGENTA_EX, item_init.stethoscope)
+    def __init__(self, health):
+        super(Stethoscope, self).__init__("Stephy", health, 5, 1, 0.05, Fore.LIGHTMAGENTA_EX, item_init.stethoscope)
 
     def execute_talk(self):
         if self.getPhase() == 1:

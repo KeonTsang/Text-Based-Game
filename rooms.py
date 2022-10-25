@@ -1,6 +1,7 @@
 from items import *
 from map import *
 from items import item_init
+from monsters import monster_init
 
 HYPERBARIC_CHAMBER = {
     "name": "Hyperbaric Chamber",
@@ -34,7 +35,7 @@ MED_BAY = {
 
     "items": [],
 
-    "monsters": [],
+    "monsters": [monster_init.stephy],
 
     "discovered" : False
 }
@@ -52,7 +53,7 @@ TESTING_AREA = {
 
     "items": [item_init.keycard],
 
-    "monsters": [],
+    "monsters": [monster_init.c3nti],
 
     "discovered" : False
 }
@@ -70,7 +71,7 @@ RECEPTION_AREA = {
 
     "items": [],
 
-    "monsters": [],
+    "monsters": [monster_init.sgtripper],
 
     "discovered" : False
 }
@@ -88,7 +89,7 @@ PYROTECHNICS_LAB = {
 
     "items": [],
 
-    "monsters": [],
+    "monsters": [monster_init.mrburns],
 
     "discovered" : False
 }
@@ -107,7 +108,7 @@ NUCLEAR_TESTING_SITE = {
 
     "items": [],
 
-    "monsters": [],
+    "monsters": [monster_init.raymond],
 
     "discovered" : False
 }

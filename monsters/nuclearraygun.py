@@ -7,8 +7,8 @@ from items import item_init
 
 class NuclearRayGun(Monster):
 
-    def __init__(self):
-        super(NuclearRayGun, self).__init__("Raymond", 30, 30, 15, 0.5, Fore.LIGHTGREEN_EX, item_init.raygun)
+    def __init__(self, health):
+        super(NuclearRayGun, self).__init__("Raymond", health, 30, 15, 0.5, Fore.LIGHTGREEN_EX, item_init.raygun)
 
     def attack(self):
         if not self.isSpared():

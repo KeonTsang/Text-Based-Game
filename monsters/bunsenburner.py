@@ -7,8 +7,8 @@ import random
 
 class BunsenBurner(Monster):
 
-    def __init__(self):
-        super(BunsenBurner, self).__init__("Mr Burns", 20, 12, 1, 0.05, Fore.RED, item_init.bunsen)
+    def __init__(self, health):
+        super(BunsenBurner, self).__init__("Mr Burns", health, 20, 7, 0.05, Fore.RED, item_init.bunsen)
 
     def attack(self):
         if not self.isSpared():

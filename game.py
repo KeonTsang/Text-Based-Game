@@ -1,19 +1,20 @@
 #Import modules / files.
 import time
+import math
 from colorama import Fore
 
-import random
 import player
+import screens
 import title_screen as ts
 import music as music
 import health as health
 import map as map
 import os as os
 import rooms as rooms
-import items as items
 from game_parser import *
-from player import *
 from items import item_init
+from items.weapon import Weapon
+from monsters import monster_init
 
 #Prints the title screen and plays the title screen music.
 ts.print_title()
@@ -22,7 +23,7 @@ ts.print_title()
 music.play_main_game_music()
 
 #Prints the health bar. Use 'health.health_bar_x' to change the health bar.
-for i in health.health_bar_init(range(player.player_health), "Your Health: ", 50, Fore.GREEN):
+for i in health.health_bar_init(range(player.player_health), "Your Health: ", math.floor(player.max_health * 0.5)):
     time.sleep(0.01)
 
 #Flushes screen in preperation for the health bar.
@@ -44,12 +45,13 @@ def print_room_items(room):
         print()
 
 def print_inventory_items(items):
-    if [item.name for item in items] != []:
+    if [item.id for item in items] != []:
         print(Fore.LIGHTMAGENTA_EX + "(!) " + Fore.RESET + "You have a " + list_of_items(items) + ".")
-        print()
     else:
         print("You have nothing in your inventory.")
-        print()
+
+def print_current_weapon():
+    print(Fore.LIGHTCYAN_EX + "(!) " + Fore.RESET + "Your current weapon is a " + player.current_weapon.name + ".\n")
 
 def print_room(room):
     # Display room name
@@ -63,7 +65,8 @@ def print_room(room):
     print_room_items(room)
 
 def exit_leads_to(exits, direction):
-    return rooms[exits[direction]]["name"]
+    ref = rooms.rooms[exits[direction]]
+    return ref["name"]
 
 
 def print_exit(direction, leads_to):
@@ -71,7 +74,6 @@ def print_exit(direction, leads_to):
 
 
 def print_menu(exits, room_items, inv_items):
-    global current_room
 
     print("You can:")
     # Iterate over available exits
@@ -81,13 +83,13 @@ def print_menu(exits, room_items, inv_items):
     # Iterate over items in the room
     for item in room_items:
         # Print the item name and description
-        print(Fore.GREEN + "(★) " + Fore.RESET + "TAKE " + item.name.upper() + " to take " + item.name + ".")
+        print(Fore.GREEN + "(★) " + Fore.RESET + "TAKE " + item.id.upper() + " to take " + item.name + ".")
     # Iterate over items in the inventory
     for item in inv_items:
         # Print the item name and description
-        print(Fore.RED + "(★) " + Fore.RESET + "DROP " + item.name.upper() + " to drop " + item.name + ".")
+        print(Fore.RED + "(★) " + Fore.RESET + "DROP " + item.id.upper() + " to drop " + item.name + ".")
 
-    if current_room == rooms["Reception Area"]:
+    if player.current_room == rooms.rooms["Reception Area"]:
         print(Fore.RED + "(★) " + Fore.RESET + "USE KEYPAD" + " to use the keypad to the north.")
 
     print()
@@ -99,58 +101,61 @@ def is_valid_exit(exits, chosen_exit):
 
 
 def execute_go(direction):
-    global current_room
-    if is_valid_exit(current_room["exits"], direction):
-        current_room = move(current_room["exits"], direction)
-        print_room(current_room)
+    if is_valid_exit(player.current_room["exits"], direction):
+        player.current_room = move(player.current_room["exits"], direction)
+        print_room(player.current_room)
     else:
         print("You cannot go there.")
 
 
 def execute_take(item_id):
-    global current_room
-    global inventory
-    for item in current_room["items"]:
-        if item.name == item_id:
-            inventory.append(item)
-            current_room["items"].remove(item)
-            print(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + "You took " + item.name + ".")
-            print(Fore.LIGHTCYAN_EX + "(↳) " + Fore.RESET + item.get_description())
-            input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
+    for item in player.current_room["items"]:
+        if item.id == item_id:
+            if isinstance(item, Weapon):
+                print(Fore.LIGHTRED_EX + "\n(!) " + Fore.RESET + "You replaced your current weapon, " +
+                      Fore.LIGHTWHITE_EX + player.current_weapon.name + Fore.RESET + " with " + Fore.LIGHTWHITE_EX +
+                      item.name + Fore.RESET + ".")
+                player.current_weapon = item
+            else:
+                player.inventory.append(item)
+                print(Fore.LIGHTRED_EX + "\n(!) " + Fore.RESET + "You took " + item.name + ".")
+            player.current_room["items"].remove(item)
+            print(Fore.LIGHTCYAN_EX + "\n(↳) " + Fore.RESET + item.get_description())
+            input(Fore.LIGHTRED_EX + "\n(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
             return
     print("You cannot take that.")
 
 
 def execute_drop(item_id):
-    global current_room
-    global inventory
-    for item in inventory:
-        if item.name == item_id:
-            inventory.remove(item)
-            current_room["items"].append(item)
+    for item in player.inventory:
+        if item.id == item_id:
+            player.inventory.remove(item)
+            player.current_room["items"].append(item)
             print(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + "You drop the " + item.name + ".")
             input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
             return
     print("You cannot drop that.")
 
 def execute_look(item_id):
-    global current_room
-    global inventory
-    for item in inventory:
-        if item.name == item_id:
-            print(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + item.get_description())
+    for item in player.inventory:
+        if item.id == item_id:
+            print(Fore.LIGHTRED_EX + "\n(!) " + Fore.RESET + item.get_description())
             input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
             return
+    if player.current_weapon.id == item_id:
+        print("\n" + player.current_weapon.get_description() + "\n")
+        input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
+        return
     print("You cannot look at that.")
 
 def execute_use(item_to_use):
-    if item_to_use == "keypad" and current_room == rooms["Reception Area"]:
+    if item_to_use == "keypad" and player.current_room == rooms.rooms["Reception Area"]:
         if player.has_unlocked_nuclear_room == False:
             user_input = input(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + "ENTER KEYCODE: ")
             if user_input == "NUcL3@R":
                 print(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + "You hear a click and the door opens.")
                 input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
-                current_room["exits"]["north"] = "Nuclear Testing Site"
+                player.current_room["exits"]["north"] = "Nuclear Testing Site"
                 player.has_unlocked_nuclear_room = True
                 return 
             else:
@@ -228,32 +233,50 @@ def menu(exits, room_items, inv_items):
 
 def move(exits, direction):
     # Next room to go to
-    return rooms[exits[direction]]
+    return rooms.rooms[exits[direction]]
 
-    
+def monster_check():
+    monsters = player.current_room["monsters"]
+    if len(monsters) > 0:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print(screens.battle_screen)
+        time.sleep(0.5)
+        os.system('cls' if os.name == 'nt' else 'clear')
+        time.sleep(0.5)
+        print(screens.battle_screen)
+        time.sleep(0.5)
+        os.system('cls' if os.name == 'nt' else 'clear')
+        time.sleep(0.5)
+        print(screens.battle_screen)
+        time.sleep(0.5)
+        monster_init.battle_monster(monsters[0])
 
 def main():
+
     # Main game loop
     while not endGame:
         #Clears screen
         os.system('cls' if os.name == 'nt' else 'clear')
-        
-        #Prints the health bar (no animation).
-        player.display_health()
 
         #Sets discovery to True.
-        current_room["discovered"] = True
+        player.current_room["discovered"] = True
+
+        monster_check()
+
+        # Prints the health bar (no animation).
+        player.display_health()
 
         #Checks if player has map in inventory. If so, print map.
-        if item_init.map in inventory:
+        if item_init.map in player.inventory:
             print(map.print_map())
 
         # Display game status (room description, inventory etc.)
-        print_room(current_room)
-        print_inventory_items(inventory)
+        print_room(player.current_room)
+        print_inventory_items(player.inventory)
+        print_current_weapon()
 
         # Show the menu with possible actions and ask the player
-        command = menu(current_room["exits"], current_room["items"], inventory)
+        command = menu(player.current_room["exits"], player.current_room["items"], player.inventory)
 
         # Execute the player's command
         execute_command(command)

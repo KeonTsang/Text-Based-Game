@@ -1,7 +1,8 @@
 import time
+import math
 from colorama import Fore
 
-import game
+#import game
 import player
 import health
 import os
@@ -11,20 +12,20 @@ from monsters.centrifuge import Centrifuge
 from monsters.bunsenburner import BunsenBurner
 from monsters.nuclearraygun import NuclearRayGun
 
-stephy = Stethoscope()
-sgtripper = TestTubeRack()
-c3nti = Centrifuge()
-mrburns = BunsenBurner()
-raymond = NuclearRayGun()
+stephy = Stethoscope(15)
+c3nti = Centrifuge(35)
+sgtripper = TestTubeRack(50)
+mrburns = BunsenBurner(65)
+raymond = NuclearRayGun(90)
 
 def end_phase():
     input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def battleMonster(monster):
+def battle_monster(monster):
     os.system('cls' if os.name == 'nt' else 'clear')
-    for i in health.health_bar_init(range(player.player_health), "Your Health: ", 50, Fore.GREEN):
+    for i in health.health_bar_init(range(player.player_health), "Your Health: ", math.floor(player.max_health * 0.5)):
         time.sleep(0.01)
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -47,5 +48,5 @@ def battleMonster(monster):
             end_phase()
         if player.player_health < 1:
             print("Game Over\nYou died!")
-            game.end_game()
+            #game.end_game()
             break

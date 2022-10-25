@@ -36,13 +36,15 @@ class Monster:
 
     # Damages this entity by whatever amount
     def damage(self, damage):
-        global current_room
         self.health -= damage
         if self.health < 1:
             print(f"\nYou killed {self.name}")
             player.karma -= 1
-            current_room["items"].append(self.item)
-            current_room["monsters"].remove(self)
+            print("Your max health increased by " + str(math.floor(player.max_health * 0.1)) + "!")
+            player.max_health = math.floor(player.max_health * 1.1)
+            player.player_health = player.max_health
+            player.current_room["items"].append(self.item)
+            player.current_room["monsters"].remove(self)
 
     # Returns if the monster is still alive
     def isAlive(self):
@@ -128,6 +130,7 @@ class Monster:
     def execute_spare(self):
         if self.getPhase() == 3:
             self.spare()
+            player.player_health = player.max_health
         else:
             print(f"You cannot spare {self.name} yet!")
 

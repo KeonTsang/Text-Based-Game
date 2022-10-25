@@ -5,8 +5,8 @@ from items import item_init
 
 class Centrifuge(Monster):
 
-    def __init__(self):
-        super(Centrifuge, self).__init__("C3ntri", 25, 15, 10, 0.01, Fore.LIGHTYELLOW_EX, item_init.centrifuge)
+    def __init__(self, health):
+        super(Centrifuge, self).__init__("C3ntri", health, 15, 10, 0.01, Fore.LIGHTYELLOW_EX, item_init.centrifuge)
 
     def execute_talk(self):
         if self.getPhase() == 1:

@@ -5,8 +5,8 @@ import random
 from items import item_init
 class TestTubeRack(Monster):
 
-    def __init__(self):
-        super(TestTubeRack, self).__init__("Sgt Ripper", 40, 12, 6, 0.10, Fore.LIGHTRED_EX, item_init.testtube)
+    def __init__(self, health):
+        super(TestTubeRack, self).__init__("Sgt Ripper", health, 12, 6, 0.10, Fore.LIGHTRED_EX, item_init.testtube)
 
     # Overidden from super
     def attack(self):
