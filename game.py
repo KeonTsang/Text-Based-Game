@@ -48,7 +48,7 @@ def print_inventory_items(items):
     if [item.id for item in items] != []:
         print(Fore.LIGHTMAGENTA_EX + "(!) " + Fore.RESET + "You have a " + list_of_items(items) + ".")
     else:
-        print("You have nothing in your inventory.")
+        print(Fore.LIGHTMAGENTA_EX + "(!) " + Fore.RESET + "You have a nothing in your inventory.")
 
 def print_current_weapon():
     print(Fore.LIGHTCYAN_EX + "(!) " + Fore.RESET + "Your current weapon is a " + player.current_weapon.name + ".\n")
@@ -121,7 +121,7 @@ def execute_take(item_id):
                 print(Fore.LIGHTRED_EX + "\n(!) " + Fore.RESET + "You took " + item.name + ".")
             player.current_room["items"].remove(item)
             print(Fore.LIGHTCYAN_EX + "\n(↳) " + Fore.RESET + item.get_description())
-            input(Fore.LIGHTRED_EX + "\n(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
+            input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
             return
     print("You cannot take that.")
 
@@ -131,7 +131,7 @@ def execute_drop(item_id):
         if item.id == item_id:
             player.inventory.remove(item)
             player.current_room["items"].append(item)
-            print(Fore.LIGHTRED_EX + "(!) " + Fore.RESET + "You drop the " + item.name + ".")
+            print(Fore.LIGHTRED_EX + "\n(!) " + Fore.RESET + "You drop the " + item.name + ".")
             input(Fore.LIGHTRED_EX + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
             return
     print("You cannot drop that.")
@@ -239,15 +239,20 @@ def monster_check():
     monsters = player.current_room["monsters"]
     if len(monsters) > 0:
         os.system('cls' if os.name == 'nt' else 'clear')
-        print(screens.battle_screen)
+        print(screens.battle_screen_dim)
+        print(screens.there_are_enemies)
         time.sleep(0.5)
         os.system('cls' if os.name == 'nt' else 'clear')
-        time.sleep(0.5)
-        print(screens.battle_screen)
+        print(screens.battle_screen_bright)
+        print(screens.there_are_enemies)
         time.sleep(0.5)
         os.system('cls' if os.name == 'nt' else 'clear')
+        print(screens.battle_screen_dim)
+        print(screens.there_are_enemies)
         time.sleep(0.5)
-        print(screens.battle_screen)
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print(screens.battle_screen_bright)
+        print(screens.there_are_enemies)
         time.sleep(0.5)
         monster_init.battle_monster(monsters[0])
 
