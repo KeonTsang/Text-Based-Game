@@ -116,12 +116,17 @@ NUCLEAR_TESTING_SITE = {
     "discovered" : False
 }
 
+SECRET_TESTING_FACILITY = {
+    "name": "Secret Testing Facility",
+}
+
 rooms = {
     "Hyperbaric Chamber": HYPERBARIC_CHAMBER,
     "Med Bay": MED_BAY,
     "Testing Area": TESTING_AREA,
     "Reception Area": RECEPTION_AREA,
     "Pyrotechnics Lab": PYROTECHNICS_LAB,
-    "Nuclear Testing Site": NUCLEAR_TESTING_SITE
+    "Nuclear Testing Site": NUCLEAR_TESTING_SITE,
+    "Secret Testing Facility": SECRET_TESTING_FACILITY
 }
 

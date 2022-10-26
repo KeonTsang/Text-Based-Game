@@ -59,4 +59,5 @@ def battle_monster(monster):
             final_boss.type_text(screens.you_died, Fore.CYAN)
             final_boss.type_text(screens.game_over, Fore.YELLOW)
             time.sleep(5)
+            input(Fore.LIGHTBLUE_EX + "\n(•) " + Fore.LIGHTYELLOW_EX + "Press enter to exit" + Fore.RESET)
             quit()

@@ -191,6 +191,7 @@ def trigger_good_ending():
     type_text(screens.good_ending, Fore.CYAN)
     type_text(screens.the_end_question, Fore.YELLOW)
     time.sleep(5)
+    input(boss_colour + "\n(•) " + Fore.LIGHTYELLOW_EX + "Press enter to exit" + Fore.RESET)
     quit()
 
 def trigger_true_ending():
@@ -210,6 +211,7 @@ def trigger_true_ending():
     type_text(screens.true_ending1, Fore.CYAN)
     type_text(screens.the_end, Fore.YELLOW)
     time.sleep(5)
+    input(boss_colour + "\n(•) " + Fore.LIGHTYELLOW_EX + "Press enter to exit" + Fore.RESET)
     quit()
 
 def recover():
@@ -372,12 +374,12 @@ def initiate():
     print(Back.WHITE)
     os.system('cls' if os.name == 'nt' else 'clear')
     final_boss.boss_colour = Fore.LIGHTYELLOW_EX
+    inverseSequence(2)
     inverseSequence(1)
     inverseSequence(0.5)
     inverseSequence(0.3)
     inverseSequence(0.2)
     inverseSequence(0.1)
-    inverseSequence(0.05)
     inverseSequence(0.05)
     print(Back.RESET)
     final_boss.boss_colour = Fore.LIGHTBLUE_EX
@@ -407,6 +409,7 @@ def initiate():
         type_text(screens.bad_ending, Fore.CYAN)
         type_text(screens.the_end_question, Fore.YELLOW)
         time.sleep(5)
+        input(boss_colour + "\n(•) " + Fore.LIGHTYELLOW_EX + "Press enter to exit..." + Fore.RESET)
         quit()
     else:
         final_boss.goodEnding = 1
@@ -423,11 +426,10 @@ def initiate():
         type_text("\nAll of your new friends who you spared in the facility appeared!", Fore.RESET)
         type_text(f"\nThey lend you strength to withstand {name}'s attacks!", Fore.RESET)
         input(Fore.LIGHTRED_EX + "\n(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
-        os.system('cls' if os.name == 'nt' else 'clear')
         while True:
+            os.system('cls' if os.name == 'nt' else 'clear')
             player.display_health()
             print(description)
             display_health(False)
             command_reader()
             attack()
-
