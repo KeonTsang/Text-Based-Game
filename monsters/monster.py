@@ -33,6 +33,8 @@ class Monster:
             else:
                 print(f"\n{self.name} attacked you for {damage} hit points!")
                 player.player_health -= damage
+                if player.player_health < 0:
+                    player.player_health = 0
 
     # Damages this entity by whatever amount
     def damage(self, damage):

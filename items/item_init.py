@@ -14,3 +14,5 @@ raygun = Weapon("raygun", "nuclear raygun", 50, 30, 0.50, "The test weapon from 
 
 map = Item("map", "map", "This seems to be a map of the facility. It's a bit worn and tattered, but it's still readable.")
 keycard = Item("keycard", "keycard", "This is a keycard. It seems to be a standard issue keycard for the facility. A door in the medical bay could be opened with it.")
+note = Item("note", "note", "It's a note holding a password.\nOn it reads: Nuclear Testing Lab passcode is NUcL3@R")
+

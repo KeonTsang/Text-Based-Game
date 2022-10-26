@@ -1,6 +1,6 @@
 import string
 
-allow_words = ["damage", "help", "go", "north", "south", "west", "east", "take", "drop", "map", "keycard", "look", "spare", "talk", "attack", "action", "inspect", "observe", "examine", "use", "NUcL3@R", "keypad", "stethoscope", "centrifuge", "testtube", "fist", "raygun", "bunsen"]
+allow_words = ["damage", "help", "go", "north", "south", "west", "east", "take", "drop", "map", "keycard", "look", "spare", "talk", "attack", "action", "inspect", "observe", "examine", "use", "NUcL3@R", "keypad", "stethoscope", "centrifuge", "testtube", "fist", "raygun", "bunsen", "note"]
 
 def filter_words(words):
     """This function takes a list of words and returns a copy of the list from

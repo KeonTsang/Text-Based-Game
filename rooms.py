@@ -8,7 +8,7 @@ HYPERBARIC_CHAMBER = {
 
     "description":
     """
-    This is where you awoke - there appears to be a chamber of some sort in the centre of the room.
+    This is where you awoke - there appears to be a chamber of some sort in the centre of the room labelled 'Hipporaser'.
     It's cold and damp in here, and you can hear the sound of water dripping from somewhere.
     Although nearly barren, there in an odd, life-like, pulse in the air.
     """,
@@ -29,6 +29,7 @@ MED_BAY = {
     """
     This seems to be the medical bay for the facility.
     Although it seems void of human life, there is the undeniable stench of death.
+    There is a door to the north which seems to require a keycard.
     """,
 
     "exits": {"east": "Hyperbaric Chamber", "west": "Testing Area"},
@@ -65,6 +66,8 @@ RECEPTION_AREA = {
     """
     This is the reception area. There is a desk with a computer on it.
     There is a sign on the desk that reads: "Welcome to the facility. Please sign in."
+    To the north is a door requiring a keypad combination code.
+    There is another door to the east which says "locked until radiation levels stabilise"
     """,
 
     "exits": {"south": "Med Bay", "west": "Pyrotechnics Lab"},
@@ -87,7 +90,7 @@ PYROTECHNICS_LAB = {
 
     "exits": {"east": "Reception Area"},
 
-    "items": [],
+    "items": [item_init.note],
 
     "monsters": [monster_init.mrburns],
 
