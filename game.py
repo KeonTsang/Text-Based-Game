@@ -3,6 +3,7 @@ import time
 import math
 from colorama import Fore
 
+import final_boss
 import player
 import screens
 import title_screen as ts
@@ -102,8 +103,11 @@ def is_valid_exit(exits, chosen_exit):
 
 def execute_go(direction):
     if is_valid_exit(player.current_room["exits"], direction):
-        player.current_room = move(player.current_room["exits"], direction)
-        print_room(player.current_room)
+        if player.current_room == rooms.RECEPTION_AREA and direction == "east" and not monster_init.raymond.isAlive():
+            final_boss.initiate()
+        else:
+            player.current_room = move(player.current_room["exits"], direction)
+            print_room(player.current_room)
     else:
         print("You cannot go there.")
 
@@ -259,7 +263,7 @@ def monster_check():
 def main():
 
     # Main game loop
-    while not endGame:
+    while not endGame and not final_boss.finalBoss:
         #Clears screen
         os.system('cls' if os.name == 'nt' else 'clear')
 
