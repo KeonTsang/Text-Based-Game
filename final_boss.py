@@ -47,5 +47,3 @@ def initiate():
     type_text(text2, Fore.MAGENTA)
     type_text(text3, Fore.CYAN)
 
-
-initiate()
