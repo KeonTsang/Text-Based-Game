@@ -27,15 +27,13 @@ You find yourself in a room, with an odd sense of familiarity.
 
 The gentle ring of a PA system chimes:
 
-"Subject #1 - Please make your way to the testing area."
+"Good morning sir, at your service."
 
 
 The PA system chimes once more - it's a slogan:
 
 "A helping hand - for a better tomorrow."
 
-
-You have no choice but to follow the instructions.
 """
 
 scrambled_title = """

@@ -40,6 +40,47 @@ Something grabs your leg and you turn around to see what it is.
 A tentacle of black ooze pulls you back . . . . .
 """
 
+lose = """
+You black out onto the floor, swallowed by the ooze....
+                                                        
+                                                        
+Confused, you awake from a slumber, bruised and battered.
+Your name is unknown to you, but you know that you are someone of importance.
+You find yourself in a room, with an odd sense of familiarity.
+
+The gentle ring of a PA system chimes:
+"Good morning sir, at your service."
+
+The PA system chimes once more - it's a slogan:
+"A helping hand - for a better tomorrow."
+"""
+
+the_end = """
+▄▄▄█████▓  ██░ ██  ▓█████    ▓█████   ███▄    █  ▓█████▄ 
+▓  ██▒ ▓▒ ▓██░ ██▒ ▓█   ▀    ▓█   ▀   ██ ▀█   █  ▒██▀ ██▌
+▒ ▓██░ ▒░ ▒██▀▀██░ ▒███      ▒███    ▓██  ▀█ ██▒ ░██   █▌
+░ ▓██▓ ░  ░▓█ ░██  ▒▓█  ▄    ▒▓█  ▄  ▓██▒  ▐▌██▒ ░▓█▄   ▌
+  ▒██▒ ░  ░▓█▒░██▓ ░▒████▒   ░▒████▒ ▒██░   ▓██░ ░▒████▓ 
+  ▒ ░░     ▒ ░░▒░▒ ░░ ▒░ ░   ░░ ▒░ ░ ▓ ▒░   ▒ ▒   ▒▒▓  ▒ 
+    ░      ▒ ░▒░ ░  ░ ░  ░    ░ ░  ░ ░ ░░   ░ ▒░  ░ ▒  ▒ 
+  ░        ░  ░░ ░    ░         ░      ░   ░ ░   ░ ░  ░ 
+           ░  ░  ░    ░  ░      ░   ░         ░     ░    
+                                               ░      
+"""
+
+the_end_question = """
+▄▄▄█████ ▓ ██░ ██  ▓█████    ▓█████   ███▄    █  ▓█████▄   ▄████████▓ 
+▓  ██▒ ▓ ▒▓██░ ██▒ ▓█   ▀    ▓█   ▀   ██ ▀█   █  ▒██▀ ██▌ ░▓▀▓░  ░▓██░
+▒ ▓██░ ▒ ░▒██▀▀██░ ▒███      ▒███    ▓██  ▀█ ██▒ ░██   █▌   ░ ▄████▓▒░
+░ ▓██▓ ░  ░▓█ ░██  ▒▓█  ▄    ▒▓█  ▄  ▓██▒  ▐▌██▒ ░▓█▄   ▌    ░▓▓░   ░
+  ▒██▒ ░  ░▓█▒░██▓ ░▒████▒   ░▒████▒ ▒██░   ▓██░ ░▒████▓    ░▓██░░
+  ▒ ░░     ▒ ░░▒░▒ ░░ ▒░ ░   ░░ ▒░ ░ ▓ ▒░   ▒ ▒   ▒▒▓  ▒    ▒░░▓░▒
+    ░      ▒ ░▒░ ░  ░ ░  ░    ░ ░  ░ ░ ░░   ░ ▒░  ░ ▒  ▒    ░  ▒  ░
+  ░        ░  ░░ ░    ░         ░       ░   ░ ░   ░ ░  ░   ░  ░   ░
+           ░  ░  ░    ░  ░      ░  ░          ░     ░          ░
+                                              ░      
+"""
+
 picture = """                         
                    ____________________        
                   |                    |        
@@ -166,6 +207,27 @@ def inverseSequence(sleep):
     type_text("\n" + final_boss.name + " dealt " + str(player.max_health - 1) + " damage to you!", Fore.BLACK)
     player.player_health = 1
     time.sleep(sleep)
+    
+def count_down_health(it, prefix="", size=50, max_hp=100, out=sys.stdout):
+    count = len(it)
+    def show(j):
+        x = int(size * j / max_hp)
+        if j < (max_hp * 0.2):
+            colour = Fore.RED
+        elif j < (max_hp * 0.4):
+            colour = Fore.YELLOW
+        else:
+            colour = Fore.GREEN
+        print(colour + "{}[{}{}] {}/{}  ".format(prefix, "#" * x, " " * (size - x), j, max_hp),
+              end='\r', file=out, flush=True)
+
+    show(0)
+    for i, item in enumerate(it):
+        yield item
+        show(count - i)
+    print(flush=False, file=out)
+    print(Style.RESET_ALL, flush=False, file=out)
+
 def execute_command(command):
     if 0 == len(command):
         print("Sorry I didn't understand that!\n")
@@ -189,66 +251,66 @@ def execute_command(command):
         return True
 
 def initiate():
-    print(Back.RESET, Fore.RESET)
-    final_boss.finalBoss = True
-    os.system('cls' if os.name == 'nt' else 'clear')
-
-    type_text(title, Fore.YELLOW, 0)
-    type_text(text1, Fore.CYAN)
-    type_text(text2, Fore.MAGENTA)
-    type_text(text3, Fore.CYAN)
-    input(boss_colour + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
-
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print(screens.battle_screen_dim)
-    print(screens.there_are_enemies)
-    time.sleep(0.5)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print(screens.battle_screen_bright)
-    print(screens.there_are_enemies)
-    time.sleep(0.5)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print(screens.battle_screen_dim)
-    print(screens.there_are_enemies)
-    time.sleep(0.5)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print(screens.battle_screen_bright)
-    print(screens.there_are_enemies)
-    time.sleep(0.5)
-
-    os.system('cls' if os.name == 'nt' else 'clear')
-    for i in health.health_bar_init(range(player.player_health), "Your Health: ", math.floor(player.max_health * 0.5), player.max_health):
-        time.sleep(0.01)
-    os.system('cls' if os.name == 'nt' else 'clear')
-
-    haveHp = True
-    while haveHp:
-        os.system('cls' if os.name == 'nt' else 'clear')
-        player.display_health()
-        print(description)
-        display_health(False)
-        command_reader()
-        if not final_boss.skip_attack:
-            attack()
-        else:
-            final_boss.skip_attack = False
-        if player.player_health == 1:
-            haveHp = False
-
-    final_boss.current_health = final_boss.max_health
-    print(picture + "\n" + name + boss_colour + "'You really thought you could beat me?'"
-                                                      "\n'Let me show you just how far apart we both really are!'\n\n")
-    input(boss_colour + "\n(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
-    print(Back.WHITE)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    final_boss.boss_colour = Fore.LIGHTYELLOW_EX
-    inverseSequence(1)
-    inverseSequence(0.5)
-    inverseSequence(0.3)
-    inverseSequence(0.2)
-    inverseSequence(0.1)
-    inverseSequence(0.05)
-    inverseSequence(0.05)
+    # print(Back.RESET, Fore.RESET)
+    # final_boss.finalBoss = True
+    # os.system('cls' if os.name == 'nt' else 'clear')
+    #
+    # type_text(title, Fore.YELLOW, 0)
+    # type_text(text1, Fore.CYAN)
+    # type_text(text2, Fore.MAGENTA)
+    # type_text(text3, Fore.CYAN)
+    # input(boss_colour + "(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
+    #
+    # os.system('cls' if os.name == 'nt' else 'clear')
+    # print(screens.battle_screen_dim)
+    # print(screens.there_are_enemies)
+    # time.sleep(0.5)
+    # os.system('cls' if os.name == 'nt' else 'clear')
+    # print(screens.battle_screen_bright)
+    # print(screens.there_are_enemies)
+    # time.sleep(0.5)
+    # os.system('cls' if os.name == 'nt' else 'clear')
+    # print(screens.battle_screen_dim)
+    # print(screens.there_are_enemies)
+    # time.sleep(0.5)
+    # os.system('cls' if os.name == 'nt' else 'clear')
+    # print(screens.battle_screen_bright)
+    # print(screens.there_are_enemies)
+    # time.sleep(0.5)
+    #
+    # os.system('cls' if os.name == 'nt' else 'clear')
+    # for i in health.health_bar_init(range(player.player_health), "Your Health: ", math.floor(player.max_health * 0.5), player.max_health):
+    #     time.sleep(0.01)
+    # os.system('cls' if os.name == 'nt' else 'clear')
+    #
+    # haveHp = True
+    # while haveHp:
+    #     os.system('cls' if os.name == 'nt' else 'clear')
+    #     player.display_health()
+    #     print(description)
+    #     display_health(False)
+    #     command_reader()
+    #     if not final_boss.skip_attack:
+    #         attack()
+    #     else:
+    #         final_boss.skip_attack = False
+    #     if player.player_health == 1:
+    #         haveHp = False
+    #
+    # final_boss.current_health = final_boss.max_health
+    # print(picture + "\n" + name + boss_colour + "'You really thought you could beat me?'"
+    #                                                   "\n'Let me show you just how far apart we both really are!'\n\n")
+    # input(boss_colour + "\n(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
+    # print(Back.WHITE)
+    # os.system('cls' if os.name == 'nt' else 'clear')
+    # final_boss.boss_colour = Fore.LIGHTYELLOW_EX
+    # inverseSequence(1)
+    # inverseSequence(0.5)
+    # inverseSequence(0.3)
+    # inverseSequence(0.2)
+    # inverseSequence(0.1)
+    # inverseSequence(0.05)
+    # inverseSequence(0.05)
     print(Back.RESET)
     final_boss.boss_colour = Fore.LIGHTBLUE_EX
     player.player_health = player.max_health
@@ -262,9 +324,22 @@ def initiate():
     type_text("\nIf still no well let me show you!", boss_colour)
     time.sleep(1)
     type_text("\nNOW DIE!!!!", boss_colour)
-    input(boss_colour + "\n(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
+    input(Fore.LIGHTRED_EX + "\n(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
+    os.system('cls' if os.name == 'nt' else 'clear')
 
     if player.karma < 5:
-        pass
+        for i in count_down_health(range(player.player_health), "Your Health: ", math.floor(player.max_health * 0.5), player.max_health):
+            time.sleep(0.01)
+        player.player_health = 0
+        os.system('cls' if os.name == 'nt' else 'clear')
+        player.display_health()
+        type_text("\n\n\n\n\n\nMWAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA", Fore.LIGHTBLUE_EX)
+        time.sleep(1)
+        os.system('cls' if os.name == 'nt' else 'clear')
+        type_text(lose, Fore.CYAN)
+        type_text(the_end_question, Fore.YELLOW)
+        time.sleep(5)
+        quit()
     else:
         pass
+
