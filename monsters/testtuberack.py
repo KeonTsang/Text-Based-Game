@@ -18,12 +18,6 @@ class TestTubeRack(Monster):
                 print(f"\n{self.name} launched a test tube at you for {damage} hit points!")
                 player.player_health -= damage
 
-    def execute_spare(self):
-        if self.getPhase() == 3:
-            self.spare()
-        else:
-            print(f"You cannot spare {self.name} yet!")
-
     def execute_talk(self):
         print(f"\nYou told {self.name} it shoots cool rockets!")
         print(f"{self.name}: " + self.colour + " 'Flattery won't save you soldier!'" + Fore.RESET)

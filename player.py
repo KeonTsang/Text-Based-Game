@@ -11,7 +11,7 @@ has_unlocked_nuclear_room = False
 has_unlocked_boss = False
 
 # Start game at the reception
-current_room = rooms.rooms["Hyperbaric Chamber"]
+current_room = rooms.rooms["Reception Area"]
 
 def display_health():
     print(health.genHealthBar(player_health, False))

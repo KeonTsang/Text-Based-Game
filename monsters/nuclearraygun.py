@@ -21,7 +21,7 @@ class NuclearRayGun(Monster):
                 player.player_health -= damage
 
     def damage(self, damage):
-        super().damage(self.damage())
+        super().damage(damage)
         if self.health < 1:
             rooms.RECEPTION_AREA["exits"]["east"] = "Secret Testing Facility"
             player.has_unlocked_boss = True

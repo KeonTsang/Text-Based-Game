@@ -133,6 +133,7 @@ class Monster:
         if self.getPhase() == 3:
             self.spare()
             player.player_health = player.max_health
+            player.current_room["monsters"].remove(self)
         else:
             print(f"You cannot spare {self.name} yet!")
 
