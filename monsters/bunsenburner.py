@@ -20,11 +20,6 @@ class BunsenBurner(Monster):
                 print(f"\n{self.name} burned you with fire for {damage} hit points!")
                 player.player_health -= damage
 
-    def damage(self, damage):
-        super().damage(self.damage())
-        if self.health < 1:
-            rooms.RECEPTION_AREA["exits"]["east"] = "Secret Testing Facility"
-
 
     def execute_talk(self):
         if (self.getPhase() == 1):
@@ -59,7 +54,6 @@ class BunsenBurner(Monster):
         print(f"{self.name}: " + self.colour + "'That battle was as intense as my flames!'" + Fore.RESET)
         self.setSpared()
         player.karma += 1
-        rooms.RECEPTION_AREA["exits"]["east"] = "Secret Testing Facility"
 
     def print_description(self):
         description = f"\n{self.name} the Bunsen Burner appeared!\n\n{self.name}: " + self.colour + \

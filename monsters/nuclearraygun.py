@@ -2,6 +2,7 @@ import player
 from monsters.monster import Monster
 from colorama import Fore
 import random
+import rooms
 from items import item_init
 
 
@@ -19,7 +20,11 @@ class NuclearRayGun(Monster):
                 print(f"\n{self.name} Shot a nuclear laser at you for {damage} hit points!")
                 player.player_health -= damage
 
-
+    def damage(self, damage):
+        super().damage(self.damage())
+        if self.health < 1:
+            rooms.RECEPTION_AREA["exits"]["east"] = "Secret Testing Facility"
+            player.has_unlocked_boss = True
 
     def execute_talk(self):
         print(f"\nYou told {self.name} that he is radioactive!")
@@ -47,6 +52,8 @@ class NuclearRayGun(Monster):
         print(f"{self.name}: " + self.colour + "'See you around man!'" + Fore.RESET)
         self.setSpared()
         player.karma += 1
+        rooms.RECEPTION_AREA["exits"]["east"] = "Secret Testing Facility"
+        player.has_unlocked_boss = True
 
     def print_description(self):
         description = f"\n{self.name} the Nuclear Ray Gun appeared!\n\n{self.name}: " + self.colour + \

@@ -103,8 +103,11 @@ def is_valid_exit(exits, chosen_exit):
 
 def execute_go(direction):
     if is_valid_exit(player.current_room["exits"], direction):
-        if player.current_room == rooms.RECEPTION_AREA and direction == "east" and not monster_init.raymond.isAlive():
-            final_boss.initiate()
+        if player.current_room == rooms.RECEPTION_AREA and direction == "east":
+            if player.has_unlocked_boss:
+                final_boss.initiate()
+            else:
+                print("You cannot go there.")
         else:
             player.current_room = move(player.current_room["exits"], direction)
             print_room(player.current_room)
