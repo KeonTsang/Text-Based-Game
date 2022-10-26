@@ -91,8 +91,10 @@ def print_menu(exits, room_items, inv_items):
         print(Fore.RED + "(★) " + Fore.RESET + "DROP " + item.id.upper() + " to drop " + item.name + ".")
 
     if player.current_room == rooms.rooms["Reception Area"]:
-        print(Fore.RED + "(★) " + Fore.RESET + "USE KEYPAD" + " to use the keypad to the north.")
+        print(Fore.MAGENTA + "(★) " + Fore.RESET + "USE KEYPAD" + " to use the keypad to the north.")
 
+    if len(inv_items) > 0:
+        print(Fore.CYAN + "\n(★) " + Fore.RESET + "type LOOK at <ITEM NAME> to look at an item in your inventory.")
     print()
     print("What do you want to do?")
 
