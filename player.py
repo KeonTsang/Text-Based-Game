@@ -5,8 +5,8 @@ from items import item_init
 inventory = []
 player_health = 100
 max_health = 100
-karma = 5
-current_weapon = item_init.raygun
+karma = 0
+current_weapon = item_init.fist
 has_unlocked_nuclear_room = False
 has_unlocked_boss = False
 
