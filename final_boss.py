@@ -237,8 +237,8 @@ def initiate():
 
     final_boss.current_health = final_boss.max_health
     print(picture + "\n" + name + boss_colour + "'You really thought you could beat me?'"
-                                                      "\n'Let me show you just how far apart we both really are!\n\n'")
-    time.sleep(2)
+                                                      "\n'Let me show you just how far apart we both really are!'\n\n")
+    input(boss_colour + "\n(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
     print(Back.WHITE)
     os.system('cls' if os.name == 'nt' else 'clear')
     final_boss.boss_colour = Fore.LIGHTYELLOW_EX
@@ -258,11 +258,11 @@ def initiate():
     display_health(False)
     print("\n" + name + ": ")
     type_text("Now do you finally get it?, The difference between me and you?", boss_colour)
-    time.sleep(0.5)
+    time.sleep(1)
     type_text("\nIf still no well let me show you!", boss_colour)
-    time.sleep(0.5)
+    time.sleep(1)
     type_text("\nNOW DIE!!!!", boss_colour)
-    time.sleep(0.5)
+    input(boss_colour + "\n(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
 
     if player.karma < 5:
         pass
