@@ -60,7 +60,7 @@ You find yourself in a room, with an odd sense of familiarity.
 
 The gentle ring of a PA system chimes:
 
-"Subject #1 - please make your way to the testing area."
+"Good morning sir, at your service."
     {Fore.BLACK}⬆ who am i? {Fore.LIGHTBLUE_EX}
 
 The PA system chimes a slogan:
