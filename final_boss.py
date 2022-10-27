@@ -7,6 +7,7 @@ import player
 import health
 from monsters import monster_init
 import screens
+import music as music
 
 finalBoss = False
 current_health = 500
@@ -16,6 +17,8 @@ phase = 1
 skip_attack = False
 goodEnding = 0
 trueEnding = False
+
+#music.play_ending_music()
 
 boss_colour = Fore.LIGHTBLUE_EX
 
@@ -176,6 +179,7 @@ def execute_attack(boss_phase):
             trigger_good_ending()
 
 def trigger_good_ending():
+    music.play_ending_music()
     os.system('cls' if os.name == 'nt' else 'clear')
     type_text("\n'What, how can this be?'", boss_colour)
     time.sleep(0.5)
@@ -195,6 +199,7 @@ def trigger_good_ending():
     quit()
 
 def trigger_true_ending():
+    music.play_ending_music()
     os.system('cls' if os.name == 'nt' else 'clear')
     type_text("\n'What, even after all that? You choose to spare me?'", boss_colour)
     time.sleep(0.5)
@@ -321,6 +326,7 @@ def execute_command(command):
         return True
 
 def initiate():
+
     print(Back.RESET, Fore.RESET)
     final_boss.finalBoss = True
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -349,6 +355,9 @@ def initiate():
     time.sleep(0.5)
 
     os.system('cls' if os.name == 'nt' else 'clear')
+
+    music.play_boss_music()
+    
     for i in health.health_bar_init(range(player.player_health), "Your Health: ", math.floor(player.max_health * 0.5), player.max_health):
         time.sleep(0.01)
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -389,11 +398,12 @@ def initiate():
     print(picture)
     display_health(False)
     print("\n" + name + ": ")
-    type_text("Now do you finally get it?, The difference between me and you?", boss_colour)
+    type_text("Now do you finally get it? The difference between you and I?", boss_colour)
     time.sleep(1)
-    type_text("\nIf still no well let me show you!", boss_colour)
+    type_text("\nYou still don't know who you are. Your purpose.", boss_colour)
     time.sleep(1)
-    type_text("\nNOW DIE!!!!", boss_colour)
+    type_text("\nAnd you shall die that way.", boss_colour)
+    music.play_ending_music()
     input(Fore.LIGHTRED_EX + "\n(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -413,6 +423,7 @@ def initiate():
         quit()
     else:
         final_boss.goodEnding = 1
+        music.play_good_ending()
         killAttempt(3, "'HUH? You're supposed to be DEAD!'", "", False, 0.05, True)
         killAttempt(3, "'WHAT! How? What's happening?!", "Lets try that again.'")
         killAttempt(1, "'WHAT!'")

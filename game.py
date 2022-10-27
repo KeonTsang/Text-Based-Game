@@ -1,4 +1,6 @@
 #Import modules / files.
+#Main Game
+
 import time
 import math
 from colorama import Fore
@@ -108,6 +110,7 @@ def execute_go(direction):
         if player.current_room == rooms.RECEPTION_AREA and direction == "east":
             if player.has_unlocked_boss:
                 final_boss.initiate()
+                music.play_boss_music()
             else:
                 print("You cannot go there.")
         else:
@@ -266,7 +269,7 @@ def monster_check():
         monster_init.battle_monster(monsters[0])
 
 def main():
-    
+
 
     # Main game loop
     while not endGame and not final_boss.finalBoss:

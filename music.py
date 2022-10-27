@@ -21,14 +21,16 @@ def play_click_music():
     pygame.mixer.music.load("music_assets/confirm_sound.mp3")
     pygame.mixer.music.play()
 
-#Plays the 'defeat' music.
-def play_defeat_music():
-    pass
-
 #Plays the 'boss' music.
 def play_boss_music():
-    pass
+    pygame.mixer.music.load("music_assets/boss_music.mp3")
+    pygame.mixer.music.play(-1) #Loops music infinitely "-1".
 
 #Plays the 'victory' music.
-def play_victory_music():
-    pass
+def play_ending_music():
+    pygame.mixer.music.load("music_assets/ending_music.mp3")
+    pygame.mixer.music.play(-1)
+    
+def play_good_ending():
+    pygame.mixer.music.load("music_assets/good_ending.mp3")
+    pygame.mixer.music.play(-1)

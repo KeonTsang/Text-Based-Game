@@ -1,3 +1,5 @@
-## Testing ground for Group Project.
+# Symbiosis Beta 0.1
 
-We test stuff :)
+Please find a .exe file within the repo.
+
+Made with love! (blood, sweat and tears)
