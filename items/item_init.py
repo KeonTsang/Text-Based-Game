@@ -16,4 +16,4 @@ map = Item("map", "map", "This seems to be a map of the facility. It's a bit wor
 keycard = Item("keycard", "keycard", "This is a keycard. It seems to be a standard issue keycard for the facility. A door in the medical bay could be opened with it.")
 note = Item("note", "note", "It's a note holding a password.\nOn it reads: Nuclear Testing Lab passcode is NUcL3@R")
 paper = Item("paper", "paper", "This piece of of paper has a handwritten note on it: 'killing will only result in more death...'. The handwriting is familiar." )
-painting = Item("painting", "painting", "A scortched painting. It seems to be of scientists. They all look familiar. One of the scientists face has been scribbled out.")
+painting = Item("painting", "painting", "A scorched painting. It seems to be of scientists. They all look familiar. One of the scientists face has been scribbled out.")
