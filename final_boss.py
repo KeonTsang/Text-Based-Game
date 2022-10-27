@@ -249,7 +249,7 @@ def inverseSequence(sleep):
     player.display_inverse_health()
     print(Fore.BLACK + picture + Fore.RESET)
     display_health(True)
-    type_text("\nYou restored All your HP!", Fore.BLACK)
+    type_text("\nThe Ooze restored All your HP!", Fore.BLACK)
     player.player_health = player.max_health
     time.sleep(sleep)
 
