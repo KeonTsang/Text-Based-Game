@@ -33,7 +33,7 @@ class NuclearRayGun(Monster):
     def execute_action(self):
         if (self.getPhase() == 1):
             print(f"\nYou put on the hazmat suit!")
-            print(f"{self.name}: " + self.colour + " 'You think that will stop my radiation!'" + Fore.RESET)
+            print(f"{self.name}: " + self.colour + " 'You think that will stop my radiation?'" + Fore.RESET)
             self.setPhase(2)
         elif (self.getPhase() == 2):
             print(f"\nYou embrace {self.name}!")

@@ -12,7 +12,7 @@ class Stethoscope(Monster):
     def execute_talk(self):
         if self.getPhase() == 1:
             print(f"\nYou told {self.name} it is great at listening to hearts!")
-            print(f"{self.name}: " + self.colour + " 'Thank you! Maybe I could try listening to yours!'" + Fore.RESET)
+            print(f"{self.name}: " + self.colour + " 'Thank you! Maybe I could try listening to yours?'" + Fore.RESET)
             self.setPhase(2)
         else:
             print(f"\nYou complement {self.name} again!")
@@ -21,10 +21,10 @@ class Stethoscope(Monster):
     def execute_action(self):
         if self.getPhase() == 1:
             print(f"\nYou try to get {self.name} to measure your heart beat!")
-            print(f"{self.name}: " + self.colour + "'Woah I barely know you!'" + Fore.RESET)
+            print(f"{self.name}: " + self.colour + "'Woah, I barely know you!'" + Fore.RESET)
         else:
             print(f"\nYou let the {self.name} measure your heart beat!")
-            print(f"{self.name}: " + self.colour + "'You have a great beat partner!'" + Fore.RESET)
+            print(f"{self.name}: " + self.colour + "'You have a great beat, partner!'" + Fore.RESET)
             self.setPhase(3)
 
     def execute_attack(self):
