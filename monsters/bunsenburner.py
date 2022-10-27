@@ -59,9 +59,9 @@ class BunsenBurner(Monster):
         description = f"\n{self.name} the Bunsen Burner appeared!\n\n{self.name}: " + self.colour + \
                       f"'I'm {self.name} and you're going to burn'\n" + Fore.RESET
         image = """              
-                         ~~~     
-                        ~~~~~     
-                        ~~~~~      
+                         \|/     
+                        \\\|//     
+                        \\\|//      
                          | |      
                          | |      
                          | |      
