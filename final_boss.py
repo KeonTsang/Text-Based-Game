@@ -74,7 +74,7 @@ description = f"\n{name}, a strange black goo, has attacked you!\n" +\
               name + ": " + boss_colour + f"'I am {name} and now you will meet your demise!'" + Fore.RESET +\
               picture
 
-def type_text(text, colour, speed=0.0001):
+def type_text(text, colour, speed=0.01):
     for char in text:
         sys.stdout.write(colour + char)
         sys.stdout.flush()
@@ -212,8 +212,8 @@ def trigger_true_ending():
     input(Fore.LIGHTRED_EX + "\n(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
 
     os.system('cls' if os.name == 'nt' else 'clear')
-    type_text(screens.true_ending1, Fore.LIGHTBLUE_EX)
-    type_text(screens.true_ending1, Fore.CYAN)
+    type_text(screens.true_ending1, Fore.LIGHTBLUE_EX, 0.01)
+    type_text(screens.true_ending2, Fore.CYAN, 0.01)
     type_text(screens.the_end, Fore.YELLOW)
     time.sleep(5)
     input(boss_colour + "\n(•) " + Fore.LIGHTYELLOW_EX + "Press enter to exit" + Fore.RESET)
@@ -377,6 +377,7 @@ def initiate():
             haveHp = False
 
     final_boss.current_health = final_boss.max_health
+    os.system('cls' if os.name == 'nt' else 'clear')
     print(picture + "\n" + name + boss_colour + "'You really thought you could beat me?'"
                                                       "\n'Let me show you just how far apart we both really are!'\n\n")
     input(boss_colour + "\n(•) " + Fore.LIGHTYELLOW_EX + "Press enter to continue..." + Fore.RESET)
