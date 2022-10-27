@@ -266,6 +266,7 @@ def monster_check():
         monster_init.battle_monster(monsters[0])
 
 def main():
+    
 
     # Main game loop
     while not endGame and not final_boss.finalBoss:

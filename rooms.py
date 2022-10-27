@@ -72,7 +72,7 @@ RECEPTION_AREA = {
 
     "exits": {"south": "Med Bay", "west": "Pyrotechnics Lab"},
 
-    "items": [],
+    "items": [item_init.paper],
 
     "monsters": [monster_init.sgtripper],
 
@@ -90,7 +90,7 @@ PYROTECHNICS_LAB = {
 
     "exits": {"east": "Reception Area"},
 
-    "items": [item_init.note],
+    "items": [item_init.note, item_init.painting],
 
     "monsters": [monster_init.mrburns],
 

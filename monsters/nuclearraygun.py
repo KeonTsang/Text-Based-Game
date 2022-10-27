@@ -44,12 +44,12 @@ class NuclearRayGun(Monster):
         weapon = player.current_weapon
         damage = weapon.attack()
         print(f"\nYou dealt {damage} to {self.name} using your {weapon.name}!")
-        print(f"{self.name}: " + self.colour + "'Careful there! You're make me hava a meltdown!'" + Fore.RESET)
+        print(f"{self.name}: " + self.colour + "'Careful there! You'll make me have a meltdown!'" + Fore.RESET)
         self.damage(damage)
 
     def spare(self):
         print(f"\nYou spared {self.name}")
-        print(f"{self.name}: " + self.colour + "'See you around man!'" + Fore.RESET)
+        print(f"{self.name}: " + self.colour + "'See you around, man!'" + Fore.RESET)
         self.setSpared()
         player.karma += 1
         rooms.RECEPTION_AREA["exits"]["east"] = "Secret Testing Facility"

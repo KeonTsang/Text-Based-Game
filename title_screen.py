@@ -83,14 +83,14 @@ def print_title():
     for char in title:
         sys.stdout.write(Fore.YELLOW + char)
         sys.stdout.flush()
-        time.sleep(0.0001)
+        time.sleep(0.001)
     print(Style.RESET_ALL)
 
     #Prints the text under the title.
     for char in text_under_title:
         sys.stdout.write(Fore.LIGHTBLUE_EX + char)
         sys.stdout.flush()
-        time.sleep(0.0001)
+        time.sleep(0.001)
     print(Style.RESET_ALL)
 
     #Prints the "Press any key to continue..." text.  

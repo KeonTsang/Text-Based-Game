@@ -17,6 +17,9 @@ def print_map():
     
     if player.has_unlocked_nuclear_room == True:
         BARRIER = Fore.WHITE + '.'
+    
+    if player.has_unlocked_boss == True:
+        BARRIER_1 = Fore.WHITE + '.'
 
     #Sets the correct icon for HYPERBARIC CHAMBER:
     if rooms.HYPERBARIC_CHAMBER["discovered"] == True: 
